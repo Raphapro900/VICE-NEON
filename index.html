@@ -12,7 +12,7 @@
             --neon-purple: #8b5cf6;
             --neon-green: #22c55e;
             --bg-dark: #070510;
-            --panel-bg: rgba(9, 7, 20, 0.78);
+            --panel-bg: rgba(9, 7, 20, 0.82);
         }
 
         * {
@@ -66,7 +66,7 @@
         .speech-bubble {
             position: fixed;
             transform: translate(-50%, -100%);
-            max-width: 230px;
+            max-width: 240px;
             padding: 4px 9px;
             border-radius: 10px;
             background: rgba(10, 7, 22, 0.92);
@@ -393,28 +393,28 @@
             display: flex;
             align-items: flex-start;
             justify-content: space-between;
-            gap: 8px;
+            gap: 6px;
         }
 
         .hud-cluster {
             display: flex;
             align-items: center;
-            gap: 6px;
+            gap: 5px;
             flex-wrap: wrap;
         }
 
         .hud-chip {
-            padding: 5px 9px;
+            padding: 5px 8px;
             border-radius: 10px;
             background: var(--panel-bg);
             border: 1px solid rgba(255, 255, 255, 0.18);
             backdrop-filter: blur(8px);
-            font-size: 11px;
+            font-size: 10.5px;
             font-weight: 800;
             color: #ffffff;
             display: inline-flex;
             align-items: center;
-            gap: 5px;
+            gap: 4px;
         }
 
         .hud-money {
@@ -423,7 +423,7 @@
         }
 
         .hud-health-wrap {
-            width: 72px;
+            width: 62px;
             height: 7px;
             border-radius: 999px;
             background: rgba(255, 255, 255, 0.16);
@@ -440,14 +440,14 @@
             display: inline-flex;
             align-items: center;
             gap: 2px;
-            padding: 4px 8px;
+            padding: 4px 7px;
             border-radius: 10px;
             background: var(--panel-bg);
             border: 1px solid rgba(255, 255, 255, 0.16);
         }
 
         .star-sym {
-            font-size: 13px;
+            font-size: 12px;
             color: rgba(255, 255, 255, 0.22);
         }
 
@@ -457,8 +457,8 @@
         }
 
         .hud-btn {
-            min-height: 36px;
-            padding: 5px 9px;
+            min-height: 34px;
+            padding: 5px 8px;
             border-radius: 10px;
             border: 1px solid rgba(255, 255, 255, 0.24);
             background: var(--panel-bg);
@@ -470,6 +470,12 @@
             touch-action: manipulation;
         }
 
+        .hud-btn.menu-btn {
+            border-color: rgba(255, 212, 59, 0.65);
+            color: var(--neon-gold);
+            background: rgba(30, 14, 54, 0.9);
+        }
+
         .hud-btn:active {
             transform: scale(0.95);
             border-color: var(--neon-cyan);
@@ -477,7 +483,7 @@
 
         #toastBanner {
             position: fixed;
-            top: 52px;
+            top: 50px;
             left: 50%;
             transform: translateX(-50%);
             z-index: 19;
@@ -492,7 +498,7 @@
             pointer-events: none;
         }
 
-        /* Indicador discreto de estado de audio */
+        /* Indicador discreto de estado de audio y voz */
         #audioStatusBadge {
             position: fixed;
             left: 50%;
@@ -507,7 +513,7 @@
             font-size: 9px;
             font-weight: 700;
             letter-spacing: 0.04em;
-            max-width: 260px;
+            max-width: 270px;
             white-space: nowrap;
             overflow: hidden;
             text-overflow: ellipsis;
@@ -651,6 +657,101 @@
 
         .key-radio {
             background: linear-gradient(145deg, rgba(236, 72, 153, 0.78), rgba(14, 116, 144, 0.9));
+        }
+
+        /* Modal táctil de Tienda / Interior / Pausa */
+        #modalOverlay {
+            position: fixed;
+            inset: 0;
+            z-index: 30;
+            background: rgba(5, 4, 14, 0.56);
+            backdrop-filter: blur(5px);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 12px;
+        }
+
+        .game-modal-card {
+            width: 100%;
+            max-width: 540px;
+            max-height: 86vh;
+            overflow-y: auto;
+            border-radius: 18px;
+            border: 1.5px solid rgba(0, 240, 255, 0.55);
+            background: rgba(12, 9, 28, 0.94);
+            padding: 14px;
+            box-shadow: 0 12px 32px rgba(0, 0, 0, 0.75);
+        }
+
+        .modal-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 10px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.14);
+            padding-bottom: 8px;
+            margin-bottom: 10px;
+        }
+
+        .modal-title {
+            font-size: 14px;
+            font-weight: 900;
+            color: var(--neon-gold);
+            letter-spacing: 0.05em;
+        }
+
+        .modal-close {
+            padding: 6px 12px;
+            min-height: 34px;
+            border-radius: 10px;
+            border: 1px solid rgba(255, 255, 255, 0.35);
+            background: rgba(255, 42, 133, 0.35);
+            color: #ffffff;
+            font-size: 11px;
+            font-weight: 900;
+            cursor: pointer;
+        }
+
+        .modal-grid {
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 8px;
+        }
+
+        .modal-item-btn {
+            padding: 9px 10px;
+            border-radius: 12px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            background: rgba(24, 19, 52, 0.9);
+            color: #ffffff;
+            text-align: left;
+            cursor: pointer;
+            display: flex;
+            flex-direction: column;
+            gap: 3px;
+        }
+
+        .modal-item-btn:active {
+            transform: scale(0.97);
+            border-color: var(--neon-cyan);
+        }
+
+        .modal-item-name {
+            font-size: 11px;
+            font-weight: 900;
+            color: #ffffff;
+        }
+
+        .modal-item-meta {
+            font-size: 10px;
+            font-weight: 700;
+            color: #4ade80;
+        }
+
+        .modal-item-sub {
+            font-size: 9.5px;
+            color: #cbd5e1;
         }
 
         /* Aviso no bloqueante de orientación vertical */
@@ -833,7 +934,7 @@
                 <h1 class="entry-main-title gta-title">VICE NEON</h1>
             </div>
 
-            <p class="entry-subtitle">MUNDO ABIERTO • 4 ARMAS • FUNKY FM &amp; 900 ES SIEMPRE</p>
+            <p class="entry-subtitle">MUNDO ABIERTO • TIENDAS &amp; BANCO • FUNKY FM &amp; 900 ES SIEMPRE</p>
 
             <button id="btnStartEntry" type="button" class="gta-title">
                 ▶ TOCAR PARA ENTRAR
@@ -880,7 +981,7 @@
         <div class="hud-top-bar">
             <!-- Izquierda: Dinero, Salud y Radio -->
             <div class="hud-cluster">
-                <div id="hudMoney" class="hud-chip hud-money">$500</div>
+                <div id="hudMoney" class="hud-chip hud-money">$1500</div>
                 <div class="hud-chip">
                     <span>❤️</span>
                     <div class="hud-health-wrap">
@@ -900,8 +1001,9 @@
                 <span class="star-sym" data-i="5">★</span>
             </div>
 
-            <!-- Derecha: Hora/Clima, Arma/Estado, Cámara y Mute -->
+            <!-- Derecha: Menú/Pausa, Hora, Arma, Cámara y Mute -->
             <div class="hud-cluster">
+                <button id="btnPauseMenu" class="hud-btn menu-btn" type="button">☰ MENÚ</button>
                 <button id="btnTimeCycle" class="hud-btn" type="button">🌙 NOCHE</button>
                 <div id="hudModeInfo" class="hud-chip">🔫 PISTOLA</div>
                 <button id="btnCamSwitch" class="hud-btn" type="button">📷 3ª PER</button>
@@ -970,6 +1072,17 @@
                 <span class="em">📣</span>
                 <span>BOCINA</span>
             </button>
+        </div>
+    </div>
+
+    <!-- Modal táctil para Pausa/Menú, Tienda de Ropa, Comida, Casas, Armas y Banco -->
+    <div id="modalOverlay" class="hidden" role="dialog" aria-modal="true">
+        <div class="game-modal-card">
+            <div class="modal-header">
+                <div id="modalTitle" class="modal-title">MENÚ / PAUSA</div>
+                <button id="btnCloseModal" class="modal-close" type="button">CONTINUAR</button>
+            </div>
+            <div id="modalBody"></div>
         </div>
     </div>
 
@@ -1080,7 +1193,7 @@
                     if (done) return;
                     done = true;
                     reject(new Error("Timeout cargando " + url));
-                }, timeoutMs || 2400);
+                }, timeoutMs || 2200);
 
                 script.onload = function () {
                     if (done) return;
@@ -1118,7 +1231,7 @@
             ];
             for (let i = 0; i < cdns.length; i++) {
                 try {
-                    const lib = await loadScriptWithTimeout(cdns[i], 2300);
+                    const lib = await loadScriptWithTimeout(cdns[i], 2100);
                     if (lib) return lib;
                 } catch (_) {}
             }
@@ -1126,9 +1239,8 @@
         }
 
         // =====================================================================
-        // 2. SISTEMA HÍBRIDO DE AUDIO CON DETECCIÓN AUTOMÁTICA DE LOS 3 AUDIOS:
-        //    intro.mp3, funky.mp3 y Estación 900 FM - Megamix 90s_Audio.mp3 / 900.mp3
-        //    + Síntesis de respaldo Web Audio API cuando no estén en el entorno
+        // 2. SISTEMA HÍBRIDO DE AUDIO SIN MÚSICA DOBLE, SONIDOS 8-BIT / POLICÍA
+        //    Y VOCES DEL DISPOSITIVO (PRIORIDAD GOOGLE / SAMSUNG)
         // =====================================================================
         class HybridAudioSystem {
             constructor() {
@@ -1144,6 +1256,10 @@
                 this.audioIntro = document.getElementById("audioIntro");
                 this.audioFunky = document.getElementById("audioFunky");
                 this.audio900 = document.getElementById("audio900");
+
+                // Canal exclusivo de música: "none" | "intro" | "funky" | "station900"
+                this.activeMusicChannel = "none";
+                this.musicEpoch = 0;
 
                 this.detectedUrls = {
                     intro: "intro.mp3",
@@ -1163,15 +1279,66 @@
                     station900: null
                 };
                 this.bufferSource = null;
-                this.bufferStationIdx = 0;
                 this.speechCooldown = 0;
 
-                // Sintetizador de respaldo cuando no hay archivos locales disponibles
                 this.synthInterval = null;
                 this.synthStationIdx = 0;
                 this.synthStep = 0;
 
+                this.selectedDeviceVoice = null;
+                this.voiceLabel = "Voz Dispositivo";
+                this._initDeviceVoices();
                 this.scanAudioFiles();
+            }
+
+            _initDeviceVoices() {
+                if (!("speechSynthesis" in window)) return;
+                const pickBestSpanishVoice = function (self) {
+                    try {
+                        const voices = window.speechSynthesis.getVoices() || [];
+                        if (!voices.length) return;
+                        const esVoices = voices.filter(function (v) {
+                            return v && typeof v.lang === "string" && v.lang.toLowerCase().indexOf("es") === 0;
+                        });
+                        const pool = esVoices.length ? esVoices : voices;
+
+                        // Priorizar voces de Google o Samsung en el dispositivo
+                        let best = null;
+                        for (let i = 0; i < pool.length; i++) {
+                            const n = (pool[i].name || "").toLowerCase();
+                            const uri = (pool[i].voiceURI || "").toLowerCase();
+                            if (n.indexOf("samsung") !== -1 || uri.indexOf("samsung") !== -1) {
+                                best = pool[i];
+                                self.voiceLabel = "Samsung TTS";
+                                break;
+                            }
+                        }
+                        if (!best) {
+                            for (let i = 0; i < pool.length; i++) {
+                                const n = (pool[i].name || "").toLowerCase();
+                                const uri = (pool[i].voiceURI || "").toLowerCase();
+                                if (n.indexOf("google") !== -1 || uri.indexOf("google") !== -1) {
+                                    best = pool[i];
+                                    self.voiceLabel = "Google TTS";
+                                    break;
+                                }
+                            }
+                        }
+                        if (!best && pool.length) {
+                            best = pool[0];
+                            self.voiceLabel = best.name ? best.name.slice(0, 16) : "Voz Dispositivo";
+                        }
+                        self.selectedDeviceVoice = best;
+                    } catch (_) {}
+                };
+
+                pickBestSpanishVoice(this);
+                const self = this;
+                try {
+                    window.speechSynthesis.addEventListener("voiceschanged", function () {
+                        pickBestSpanishVoice(self);
+                    });
+                } catch (_) {}
             }
 
             setStatus(txt) {
@@ -1180,34 +1347,17 @@
                 if (el) el.textContent = txt;
             }
 
-            /**
-             * Detecta automáticamente los 3 archivos de audio en rutas relativas comunes
-             * del HTML normal (raíz actual, ./audio/, ./mp3/, ./assets/) y decodifica
-             * los que estén disponibles para reproducción sincronizada.
-             */
             async scanAudioFiles() {
                 const specs = [
                     {
                         key: "intro",
                         el: this.audioIntro,
-                        candidates: [
-                            "intro.mp3",
-                            "./intro.mp3",
-                            "audio/intro.mp3",
-                            "mp3/intro.mp3",
-                            "assets/intro.mp3"
-                        ]
+                        candidates: ["intro.mp3", "./intro.mp3", "audio/intro.mp3", "mp3/intro.mp3", "assets/intro.mp3"]
                     },
                     {
                         key: "funky",
                         el: this.audioFunky,
-                        candidates: [
-                            "funky.mp3",
-                            "./funky.mp3",
-                            "audio/funky.mp3",
-                            "mp3/funky.mp3",
-                            "assets/funky.mp3"
-                        ]
+                        candidates: ["funky.mp3", "./funky.mp3", "audio/funky.mp3", "mp3/funky.mp3", "assets/funky.mp3"]
                     },
                     {
                         key: "station900",
@@ -1229,7 +1379,6 @@
                 for (let s = 0; s < specs.length; s++) {
                     const spec = specs[s];
                     let foundUrl = null;
-
                     for (let c = 0; c < spec.candidates.length; c++) {
                         const url = spec.candidates[c];
                         const ok = await this._probeMediaUrl(url);
@@ -1265,9 +1414,9 @@
 
                 if (!this.unlocked) {
                     if (countFound > 0) {
-                        this.setStatus("🎵 3 AUDIOS DETECTADOS (" + countFound + "/3 LISTOS)");
+                        this.setStatus("🎵 3 AUDIOS DETECTADOS (" + countFound + "/3) • " + this.voiceLabel);
                     } else {
-                        this.setStatus("🎵 AUDIO: SÍNTESIS + MP3 LISTO");
+                        this.setStatus("🎵 AUDIO LISTO • " + this.voiceLabel);
                     }
                 }
             }
@@ -1278,11 +1427,7 @@
                         if (typeof window.fetch === "function" && window.location.protocol !== "file:") {
                             fetch(url, { method: "HEAD" })
                                 .then(function (res) {
-                                    if (res && res.ok) {
-                                        resolve(true);
-                                        return;
-                                    }
-                                    resolve(false);
+                                    resolve(Boolean(res && res.ok));
                                 })
                                 .catch(function () {
                                     resolve(false);
@@ -1303,7 +1448,7 @@
                         };
                         const timer = setTimeout(function () {
                             finish(false);
-                        }, 900);
+                        }, 850);
 
                         probe.preload = "metadata";
                         probe.addEventListener("canplaythrough", function () { finish(true); }, { once: true });
@@ -1385,43 +1530,47 @@
                     }
                 } catch (_) {}
 
-                const list = [this.audioFunky, this.audio900];
-                for (let i = 0; i < list.length; i++) {
-                    const el = list[i];
-                    if (!el) continue;
-                    try {
-                        el.muted = true;
-                        const p = el.play();
-                        if (p && typeof p.then === "function") {
-                            p.then(function () {
-                                el.pause();
-                                el.muted = false;
-                            }).catch(function () {
-                                el.muted = false;
-                            });
-                        } else {
-                            el.pause();
-                            el.muted = false;
-                        }
-                    } catch (_) {}
-                }
-
                 this.unlocked = true;
-                this.setStatus("🎵 AUDIO: ACTIVO");
+                this.setStatus("🎵 AUDIO ACTIVO • " + this.voiceLabel);
                 return true;
             }
 
-            stopSynthLoop() {
+            /**
+             * Detiene cualquier fuente musical previa (BufferSource, elementos <audio> y sintetizador)
+             * para garantizar que jamás suenen dos pistas al mismo tiempo.
+             */
+            stopAllMusicExclusive() {
+                this.musicEpoch++;
+                this.activeMusicChannel = "none";
+
+                if (this.bufferSource) {
+                    try { this.bufferSource.stop(); } catch (_) {}
+                    try { this.bufferSource.disconnect(); } catch (_) {}
+                    this.bufferSource = null;
+                }
+
                 if (this.synthInterval) {
                     clearInterval(this.synthInterval);
                     this.synthInterval = null;
                 }
                 this.synthStationIdx = 0;
+
+                const allEls = [this.audioIntro, this.audioFunky, this.audio900];
+                for (let i = 0; i < allEls.length; i++) {
+                    const el = allEls[i];
+                    if (!el) continue;
+                    try {
+                        el.pause();
+                    } catch (_) {}
+                }
             }
 
-            startSynthStation(stationIdx) {
-                this.stopSynthLoop();
-                if (this.muted || stationIdx === 0) return;
+            startSynthStation(stationIdx, epoch) {
+                if (this.synthInterval) {
+                    clearInterval(this.synthInterval);
+                    this.synthInterval = null;
+                }
+                if (this.muted || stationIdx === 0 || epoch !== this.musicEpoch) return;
                 const ctx = this._ensureAudioContext();
                 if (!ctx || !this.master) return;
 
@@ -1434,7 +1583,17 @@
 
                 const self = this;
                 this.synthInterval = setInterval(function () {
-                    if (self.muted || !game.inCar || game.radioIdx !== stationIdx || game.phase !== "playing") return;
+                    if (
+                        epoch !== self.musicEpoch ||
+                        self.muted ||
+                        !game.inCar ||
+                        game.radioIdx !== stationIdx ||
+                        game.phase !== "playing"
+                    ) {
+                        clearInterval(self.synthInterval);
+                        self.synthInterval = null;
+                        return;
+                    }
                     try {
                         if (ctx.state === "suspended") ctx.resume().catch(function () {});
                         const now = ctx.currentTime;
@@ -1445,7 +1604,7 @@
                         const g = ctx.createGain();
                         osc.type = isFunky ? "sawtooth" : "square";
                         osc.frequency.setValueAtTime(freq, now);
-                        g.gain.setValueAtTime(0.045, now);
+                        g.gain.setValueAtTime(0.042, now);
                         g.gain.exponentialRampToValueAtTime(0.0008, now + (tempoMs / 1000) * 0.85);
                         osc.connect(g);
                         g.connect(self.master);
@@ -1458,7 +1617,7 @@
                             kick.type = "sine";
                             kick.frequency.setValueAtTime(115, now);
                             kick.frequency.exponentialRampToValueAtTime(38, now + 0.11);
-                            kg.gain.setValueAtTime(0.08, now);
+                            kg.gain.setValueAtTime(0.075, now);
                             kg.gain.exponentialRampToValueAtTime(0.001, now + 0.12);
                             kick.connect(kg);
                             kg.connect(self.master);
@@ -1481,20 +1640,16 @@
                     if (this.audio900) this.audio900.muted = this.muted;
 
                     if (this.muted) {
-                        this.stopBufferSource();
-                        this.stopSynthLoop();
-                        if (this.audioIntro && !this.audioIntro.paused) this.audioIntro.pause();
-                        if (this.audioFunky && !this.audioFunky.paused) this.audioFunky.pause();
-                        if (this.audio900 && !this.audio900.paused) this.audio900.pause();
+                        this.stopAllMusicExclusive();
                         if ("speechSynthesis" in window) {
                             window.speechSynthesis.cancel();
                         }
                         this.setStatus("🔇 AUDIO: SILENCIADO");
                     } else {
-                        this.setStatus("🎵 AUDIO: ACTIVO");
+                        this.setStatus("🎵 AUDIO ACTIVO • " + this.voiceLabel);
                         if (game.phase === "intro") {
                             this.startIntroAudio();
-                        } else if (game.inCar && game.radioIdx > 0) {
+                        } else if (game.inCar && game.radioIdx > 0 && game.phase === "playing") {
                             this.startCarRadio(game.radioIdx);
                         }
                     }
@@ -1502,21 +1657,8 @@
                 return this.muted;
             }
 
-            stopBufferSource() {
-                if (this.bufferSource) {
-                    try {
-                        this.bufferSource.stop();
-                    } catch (_) {}
-                    try {
-                        this.bufferSource.disconnect();
-                    } catch (_) {}
-                    this.bufferSource = null;
-                }
-                this.bufferStationIdx = 0;
-            }
-
-            _playDecodedBuffer(buf, offsetSec, loop) {
-                if (!buf || this.muted) return false;
+            _playDecodedBuffer(buf, offsetSec, loop, epoch) {
+                if (!buf || this.muted || epoch !== this.musicEpoch) return false;
                 try {
                     const ctx = this._ensureAudioContext();
                     if (!ctx || !this.master) return false;
@@ -1524,7 +1666,11 @@
                         const r = ctx.resume();
                         if (r && typeof r.catch === "function") r.catch(function () {});
                     }
-                    this.stopBufferSource();
+                    if (this.bufferSource) {
+                        try { this.bufferSource.stop(); } catch (_) {}
+                        try { this.bufferSource.disconnect(); } catch (_) {}
+                        this.bufferSource = null;
+                    }
                     const src = ctx.createBufferSource();
                     src.buffer = buf;
                     src.loop = Boolean(loop);
@@ -1542,48 +1688,45 @@
             }
 
             distanceAttenuation(wx, wz, maxDist) {
-                const limit = maxDist || 56;
+                const limit = maxDist || 64;
                 const d = Math.hypot(wx - player.x, wz - player.z);
                 if (d >= limit) return 0;
                 const t = 1 - d / limit;
-                return Math.pow(t, 1.65);
+                return Math.pow(t, 1.6);
             }
 
             startIntroAudio() {
-                this.stopCarRadio();
+                this.stopAllMusicExclusive();
+                const epoch = this.musicEpoch;
+                this.activeMusicChannel = "intro";
                 this.startSessionClock();
                 if (this.muted) return;
 
                 let playedAny = false;
                 if (this.buffers.intro) {
-                    playedAny = this._playDecodedBuffer(this.buffers.intro, 0, false);
+                    playedAny = this._playDecodedBuffer(this.buffers.intro, 0, false, epoch);
                 }
-                if (this.audioIntro) {
+                if (!playedAny && this.audioIntro) {
                     try {
                         this.audioIntro.muted = this.muted;
                         this.audioIntro.currentTime = 0;
                         const p = this.audioIntro.play();
                         if (p && typeof p.then === "function") {
                             p.then(function () {
-                                playedAny = true;
-                            }).catch(function () {});
-                        } else {
-                            playedAny = true;
+                                if (epoch !== this.musicEpoch) {
+                                    this.audioIntro.pause();
+                                }
+                            }.bind(this)).catch(function () {});
                         }
+                        playedAny = true;
                     } catch (_) {}
                 }
                 this.setStatus(playedAny ? ("🎵 INTRO: " + this.detectedUrls.intro) : "🎵 INTRO: WEST COAST");
             }
 
             stopIntroAudio() {
-                if (this.bufferStationIdx === 0 && this.bufferSource) {
-                    this.stopBufferSource();
-                }
-                if (this.audioIntro) {
-                    try {
-                        this.audioIntro.pause();
-                        this.audioIntro.currentTime = 0;
-                    } catch (_) {}
+                if (this.activeMusicChannel === "intro") {
+                    this.stopAllMusicExclusive();
                 }
             }
 
@@ -1600,12 +1743,14 @@
             }
 
             startCarRadio(stationIdx) {
-                this.stopCarRadio();
-                if (stationIdx === 0) {
+                this.stopAllMusicExclusive();
+                if (stationIdx === 0 || !game.inCar || game.phase !== "playing") {
                     this.setStatus("📻 RADIO: APAGADA");
                     return;
                 }
 
+                const epoch = this.musicEpoch;
+                this.activeMusicChannel = stationIdx === 1 ? "funky" : "station900";
                 this.startSessionClock();
                 const elapsed = this.getSessionElapsedSeconds();
                 const buf = this.getStationBuffer(stationIdx);
@@ -1614,11 +1759,10 @@
 
                 let started = false;
                 if (buf && !this.muted) {
-                    started = this._playDecodedBuffer(buf, elapsed, true);
-                    if (started) this.bufferStationIdx = stationIdx;
+                    started = this._playDecodedBuffer(buf, elapsed, true, epoch);
                 }
 
-                if (track) {
+                if (!started && track) {
                     const syncOffset = function () {
                         try {
                             if (track.duration && isFinite(track.duration) && track.duration > 0) {
@@ -1637,38 +1781,34 @@
                             const p = track.play();
                             if (p && typeof p.then === "function") {
                                 p.then(function () {
-                                    started = true;
-                                }).catch(function () {});
-                            } else {
-                                started = true;
+                                    if (epoch !== this.musicEpoch) {
+                                        track.pause();
+                                    }
+                                }.bind(this)).catch(function () {});
                             }
+                            started = true;
                         }
                     } catch (_) {}
                 }
 
                 if (!started && !this.muted) {
-                    this.startSynthStation(stationIdx);
+                    this.startSynthStation(stationIdx, epoch);
                 }
 
                 this.setStatus("📻 EN VIVO: " + chName);
             }
 
             stopCarRadio() {
-                this.stopBufferSource();
-                this.stopSynthLoop();
-                const tracks = [this.audioFunky, this.audio900];
-                for (let i = 0; i < tracks.length; i++) {
-                    const tr = tracks[i];
-                    if (tr) {
-                        try {
-                            if (!tr.paused) tr.pause();
-                        } catch (_) {}
-                    }
+                if (this.activeMusicChannel === "funky" || this.activeMusicChannel === "station900") {
+                    this.stopAllMusicExclusive();
                 }
             }
 
-            playShot(weaponKind) {
+            playShot(weaponKind, wx, wz) {
                 if (this.muted) return;
+                const att = (wx !== undefined && wz !== undefined)
+                    ? Math.max(0.15, this.distanceAttenuation(wx, wz, 64))
+                    : 1;
                 try {
                     const ctx = this._ensureAudioContext();
                     if (!ctx || !this.master) return;
@@ -1687,7 +1827,7 @@
                     flt.type = "bandpass";
                     flt.frequency.setValueAtTime(weaponKind === "sniper" ? 2300 : 1650, t);
                     const g = ctx.createGain();
-                    g.gain.setValueAtTime(0.24, t);
+                    g.gain.setValueAtTime(0.24 * att, t);
                     g.gain.exponentialRampToValueAtTime(0.001, t + dur);
                     src.connect(flt);
                     flt.connect(g);
@@ -1698,7 +1838,7 @@
 
             playPunch(wx, wz) {
                 if (this.muted) return;
-                const att = wx !== undefined && wz !== undefined ? Math.max(0.2, this.distanceAttenuation(wx, wz, 42)) : 1;
+                const att = wx !== undefined && wz !== undefined ? Math.max(0.2, this.distanceAttenuation(wx, wz, 46)) : 1;
                 try {
                     const ctx = this._ensureAudioContext();
                     if (!ctx || !this.master) return;
@@ -1715,6 +1855,83 @@
                     g.connect(this.master);
                     osc.start(t);
                     osc.stop(t + 0.11);
+                } catch (_) {}
+            }
+
+            /**
+             * Sonido de explosión 8-bit al caer en WASTED (ruido cuantizado + barrido grave 8-bit).
+             */
+            playWastedExplosion8Bit() {
+                if (this.muted) return;
+                try {
+                    const ctx = this._ensureAudioContext();
+                    if (!ctx || !this.master) return;
+                    if (ctx.state === "suspended") ctx.resume().catch(function () {});
+                    const t = ctx.currentTime;
+                    const dur = 0.72;
+
+                    // Ruido blanco cuantizado en escalones 8-bit
+                    const len = Math.max(1, Math.floor(ctx.sampleRate * dur));
+                    const buf = ctx.createBuffer(1, len, ctx.sampleRate);
+                    const ch = buf.getChannelData(0);
+                    const stepHold = Math.max(2, Math.floor(ctx.sampleRate / 2800));
+                    let sampleVal = 0;
+                    for (let i = 0; i < len; i++) {
+                        if (i % stepHold === 0) {
+                            sampleVal = Math.round((Math.random() * 2 - 1) * 4) / 4;
+                        }
+                        ch[i] = sampleVal * Math.pow(1 - i / len, 1.4);
+                    }
+                    const noiseSrc = ctx.createBufferSource();
+                    noiseSrc.buffer = buf;
+                    const ng = ctx.createGain();
+                    ng.gain.setValueAtTime(0.35, t);
+                    ng.gain.exponentialRampToValueAtTime(0.002, t + dur);
+                    noiseSrc.connect(ng);
+                    ng.connect(this.master);
+                    noiseSrc.start(t);
+
+                    // Pulso cuadrado descendente estilo 8-bit
+                    const osc = ctx.createOscillator();
+                    const og = ctx.createGain();
+                    osc.type = "square";
+                    osc.frequency.setValueAtTime(220, t);
+                    osc.frequency.setValueAtTime(145, t + 0.12);
+                    osc.frequency.setValueAtTime(88, t + 0.26);
+                    osc.frequency.exponentialRampToValueAtTime(32, t + dur);
+                    og.gain.setValueAtTime(0.22, t);
+                    og.gain.exponentialRampToValueAtTime(0.001, t + dur);
+                    osc.connect(og);
+                    og.connect(this.master);
+                    osc.start(t);
+                    osc.stop(t + dur);
+                } catch (_) {}
+            }
+
+            /**
+             * Sonido de sirena / alerta policial atenuado por distancia.
+             */
+            playPoliceSiren(wx, wz) {
+                if (this.muted) return;
+                const att = this.distanceAttenuation(wx, wz, 76);
+                if (att <= 0.05) return;
+                try {
+                    const ctx = this._ensureAudioContext();
+                    if (!ctx || !this.master) return;
+                    if (ctx.state === "suspended") ctx.resume().catch(function () {});
+                    const t = ctx.currentTime;
+                    const osc = ctx.createOscillator();
+                    const g = ctx.createGain();
+                    osc.type = "sawtooth";
+                    osc.frequency.setValueAtTime(620, t);
+                    osc.frequency.linearRampToValueAtTime(940, t + 0.16);
+                    osc.frequency.linearRampToValueAtTime(640, t + 0.34);
+                    g.gain.setValueAtTime(0.085 * att, t);
+                    g.gain.exponentialRampToValueAtTime(0.001, t + 0.36);
+                    osc.connect(g);
+                    g.connect(this.master);
+                    osc.start(t);
+                    osc.stop(t + 0.37);
                 } catch (_) {}
             }
 
@@ -1738,23 +1955,53 @@
                 } catch (_) {}
             }
 
+            playCashRegister() {
+                if (this.muted) return;
+                try {
+                    const ctx = this._ensureAudioContext();
+                    if (!ctx || !this.master) return;
+                    if (ctx.state === "suspended") ctx.resume().catch(function () {});
+                    const t = ctx.currentTime;
+                    const o1 = ctx.createOscillator();
+                    const g1 = ctx.createGain();
+                    o1.type = "triangle";
+                    o1.frequency.setValueAtTime(880, t);
+                    o1.frequency.setValueAtTime(1318.5, t + 0.07);
+                    g1.gain.setValueAtTime(0.18, t);
+                    g1.gain.exponentialRampToValueAtTime(0.001, t + 0.22);
+                    o1.connect(g1);
+                    g1.connect(this.master);
+                    o1.start(t);
+                    o1.stop(t + 0.23);
+                } catch (_) {}
+            }
+
+            /**
+             * Utiliza las voces del dispositivo (priorizando Google / Samsung en español)
+             * con volumen y ritmo atenuados por distancia.
+             */
             playNpcVoice(wx, wz, text, basePitch, aggressive) {
                 if (this.muted || !text) return;
                 if (!("speechSynthesis" in window)) return;
-                const att = this.distanceAttenuation(wx, wz, 56);
+                const att = this.distanceAttenuation(wx, wz, 64);
                 if (att <= 0.08 || this.speechCooldown > 0) return;
 
                 try {
-                    this.speechCooldown = 1.65;
+                    this.speechCooldown = 1.6;
                     window.speechSynthesis.cancel();
                     const utter = new SpeechSynthesisUtterance(text);
-                    utter.lang = "es-ES";
-                    utter.volume = Math.max(0.12, Math.min(1, att));
+                    if (this.selectedDeviceVoice) {
+                        utter.voice = this.selectedDeviceVoice;
+                        utter.lang = this.selectedDeviceVoice.lang || "es-ES";
+                    } else {
+                        utter.lang = "es-ES";
+                    }
+                    utter.volume = Math.max(0.15, Math.min(1, att));
                     const normPitch = Math.max(0.75, Math.min(1.45, (basePitch || 150) / 155));
-                    utter.pitch = aggressive ? Math.min(1.5, normPitch * 1.15) : normPitch;
+                    utter.pitch = aggressive ? Math.min(1.45, normPitch * 1.12) : normPitch;
                     utter.rate = aggressive
-                        ? (0.95 + att * 0.25)
-                        : (0.78 + att * 0.28);
+                        ? (0.98 + att * 0.22)
+                        : (0.82 + att * 0.24);
                     window.speechSynthesis.speak(utter);
                 } catch (_) {}
             }
@@ -1766,9 +2013,7 @@
             }
 
             cleanup() {
-                this.stopIntroAudio();
-                this.stopCarRadio();
-                this.stopSynthLoop();
+                this.stopAllMusicExclusive();
                 try {
                     if ("speechSynthesis" in window) {
                         window.speechSynthesis.cancel();
@@ -1780,11 +2025,37 @@
         const soundSys = new HybridAudioSystem();
 
         // =====================================================================
-        // 3. DATOS DEL MUNDO ABIERTO, CICLO HORARIO, CASA, ARMAS, RADIO Y PELEAS
+        // 3. DATOS DEL MUNDO EXTENDIDO (Z MÁS LARGO), TIENDAS, CASAS, BANCO Y POLICÍA
         // =====================================================================
-        const MAP_LIMIT = 142;
-        const ROAD_CENTERS = [-92, -46, 0, 46, 92];
-        const PLAYER_HOME = { x: -23, z: 23 };
+        const MAP_WIDTH_X = 142;
+        const MAP_LENGTH_Z = 228;
+        const ROAD_X_CENTERS = [-92, -46, 0, 46, 92];
+        const ROAD_Z_CENTERS = [-160, -114, -68, -22, 24, 70, 116, 162];
+
+        const PLAYER_HOME = { x: -23, z: 24 };
+
+        // Lugares reales accesibles en el mundo para ENTRAR y usar
+        const WORLD_VENUES = [
+            { id: "home0", kind: "home", name: "Tu Casa Principal", icon: "🏠", x: -23, z: 24, colorHex: "#00f0ff", colorNum: 0x00f0ff, cooldown: 0 },
+            { id: "clothes", kind: "clothes", name: "Tienda de Ropa Neon", icon: "👕", x: 23, z: 24, colorHex: "#ff2a85", colorNum: 0xff2a85, cooldown: 0 },
+            { id: "food", kind: "food", name: "Burger & Taco Vice", icon: "🍔", x: 23, z: -22, colorHex: "#22c55e", colorNum: 0x22c55e, cooldown: 0 },
+            { id: "weapons", kind: "weapons", name: "Armería Raphapro", icon: "🔫", x: -23, z: -22, colorHex: "#8b5cf6", colorNum: 0x8b5cf6, cooldown: 0 },
+            { id: "bank", kind: "bank", name: "Banco Central Vice", icon: "🏦", x: 23, z: -68, colorHex: "#ffd43b", colorNum: 0xffd43b, cooldown: 0 },
+            { id: "house1", kind: "property", name: "Villa Sur ($1200)", icon: "🏡", x: -23, z: 70, colorHex: "#38bdf8", colorNum: 0x38bdf8, price: 1200, owned: false, cooldown: 0 },
+            { id: "house2", kind: "property", name: "Ático Norte ($2400)", icon: "🏰", x: -23, z: -114, colorHex: "#f472b6", colorNum: 0xf472b6, price: 2400, owned: false, cooldown: 0 }
+        ];
+
+        const OUTFIT_CATALOG = [
+            { id: "neon", name: "Neón Vice", colorHex: "#ff2a85", colorNum: 0xff2a85, price: 0 },
+            { id: "cyan", name: "Ciber Cian", colorHex: "#00f0ff", colorNum: 0x00f0ff, price: 450 },
+            { id: "gold", name: "Oro 900", colorHex: "#ffd43b", colorNum: 0xffd43b, price: 850 },
+            { id: "emerald", name: "Esmeralda", colorHex: "#10b981", colorNum: 0x10b981, price: 1100 }
+        ];
+
+        const FOOD_CATALOG = [
+            { id: "taco", name: "Combo Vice", hp: 35, moneyBoost: 0, price: 120, msg: "🌮 +35 Salud recuperada" },
+            { id: "feast", name: "Banquete Real", hp: 100, moneyBoost: 0, price: 280, msg: "🍔 Salud al 100% restaurada" }
+        ];
 
         const TIME_MODES = [
             { id: "night", label: "🌙 NOCHE", skyHex: 0x1f0d36, skyTop: "#090517", skyMid: "#28104a", skyBot: "#6b1d5c", ambient: 1.05 },
@@ -1793,10 +2064,10 @@
         ];
 
         const WEAPON_CATALOG = [
-            { id: "fist", name: "PUÑO", icon: "👊", range: 3.4, damage: 34, cooldown: 0.28, pellets: 1, spread: 0 },
-            { id: "pistol", name: "PISTOLA", icon: "🔫", range: 40, damage: 50, cooldown: 0.22, pellets: 1, spread: 0.015 },
-            { id: "shotgun", name: "ESCOPETA", icon: "💥", range: 23, damage: 28, cooldown: 0.54, pellets: 5, spread: 0.15 },
-            { id: "sniper", name: "FRANCOTIRADOR", icon: "🎯", range: 88, damage: 125, cooldown: 0.74, pellets: 1, spread: 0.002 }
+            { id: "fist", name: "PUÑO", icon: "👊", range: 3.4, damage: 34, cooldown: 0.28, pellets: 1, spread: 0, price: 0, unlocked: true },
+            { id: "pistol", name: "PISTOLA", icon: "🔫", range: 42, damage: 50, cooldown: 0.22, pellets: 1, spread: 0.015, price: 0, unlocked: true },
+            { id: "shotgun", name: "ESCOPETA", icon: "💥", range: 24, damage: 30, cooldown: 0.54, pellets: 5, spread: 0.15, price: 750, unlocked: false },
+            { id: "sniper", name: "FRANCOTIRADOR", icon: "🎯", range: 92, damage: 130, cooldown: 0.72, pellets: 1, spread: 0.002, price: 1400, unlocked: false }
         ];
 
         const RADIO_CHANNELS = [
@@ -1821,6 +2092,13 @@
             "¡Ven a pelear, cobarde de mierda!"
         ];
 
+        const POLICE_PHRASES = [
+            "¡Policía de Vice Neon, alto ahí!",
+            "¡Manos arriba o abrimos fuego!",
+            "¡Código rojo, sospechoso armado!",
+            "¡No te muevas, oficial disparando!"
+        ];
+
         const STEAL_PHRASES = [
             "¡Oye, devuélveme mi auto, ladrón de mierda!",
             "¡Bájate de mi coche, cabrón!",
@@ -1836,37 +2114,42 @@
         const player = {
             x: 0,
             y: 0,
-            z: 24,
+            z: 44,
             rotY: 0,
             vy: 0,
             grounded: true,
             stepPhase: 0,
             punchTimer: 0,
-            homeCooldown: 0
+            outfitIdx: 0,
+            ownedOutfits: [0]
         };
 
         const game = {
             phase: "entry",
+            paused: false,
+            activeModal: null,
             timeIdx: 0,
             introTime: 0,
             introDuration: 6.4,
             introStageShown: 0,
-            money: 500,
+            money: 1500,
             health: 100,
             wanted: 0,
             wantedTimer: 0,
+            sirenCooldown: 0,
             weaponIdx: 1,
             radioIdx: 1,
             attackTimer: 0,
             inCar: false,
             currentCar: null,
             nearbyCar: null,
+            nearbyVenue: null,
             camMode: 0,
             camYaw: 0,
             camYawOffset: 0,
             camPitchOffset: 0,
-            camPos: { x: 0, y: 12, z: 12 },
-            camLook: { x: 0, y: 1.5, z: 24 },
+            camPos: { x: 0, y: 12, z: 30 },
+            camLook: { x: 0, y: 1.5, z: 44 },
             toastTimer: null,
             useFallback2D: true
         };
@@ -1891,7 +2174,7 @@
                 if (game.toastTimer) clearTimeout(game.toastTimer);
                 game.toastTimer = setTimeout(function () {
                     el.classList.add("hidden");
-                }, 2100);
+                }, 2200);
             } catch (_) {}
         }
 
@@ -1909,15 +2192,21 @@
             pushToast(tm.label);
         }
 
-        function setWantedLevel(delta) {
-            const next = Math.max(0, Math.min(5, game.wanted + delta));
+        function setWantedLevel(delta, minFloor) {
+            const floorVal = typeof minFloor === "number" ? minFloor : 0;
+            const next = Math.max(floorVal, Math.min(5, game.wanted + delta));
             if (next !== game.wanted) {
                 game.wanted = next;
-                if (delta > 0) {
-                    game.wantedTimer = 8.5;
-                    pushToast("🚨 BÚSQUEDA: " + "★".repeat(game.wanted));
+                if (game.wanted > 0) {
+                    game.wantedTimer = 9.5;
+                    if (delta > 0 || floorVal > 0) {
+                        pushToast("🚨 BÚSQUEDA: " + "★".repeat(game.wanted));
+                        soundSys.playPoliceSiren(player.x, player.z);
+                    }
                 }
                 refreshStarsUI();
+            } else if (game.wanted > 0 && delta > 0) {
+                game.wantedTimer = 9.5;
             }
         }
 
@@ -1939,6 +2228,17 @@
             soundSys.playNpcVoice(npc.x, npc.z, text, npc.voicePitch, aggressive);
         }
 
+        function isNearAnyVenue(x, z, pad) {
+            const r = pad || 8.5;
+            for (let i = 0; i < WORLD_VENUES.length; i++) {
+                const v = WORLD_VENUES[i];
+                if (Math.abs(x - v.x) < r && Math.abs(z - v.z) < r) {
+                    return true;
+                }
+            }
+            return false;
+        }
+
         function populateWorldEntities() {
             buildings.length = 0;
             vehicles.length = 0;
@@ -1946,24 +2246,25 @@
             bullets.length = 0;
             pickups.length = 0;
 
-            const blockCenters = [-69, -23, 23, 69];
+            const blockX = [-69, -23, 23, 69];
+            const blockZ = [-184, -137, -91, -45, 1, 47, 93, 139, 185];
             const paletteHex = ["#ff2a85", "#00f0ff", "#ffd43b", "#8b5cf6"];
             const paletteNum = [0xff2a85, 0x00f0ff, 0xffd43b, 0x8b5cf6];
 
-            for (let gx = 0; gx < blockCenters.length; gx++) {
-                for (let gz = 0; gz < blockCenters.length; gz++) {
-                    const bx = blockCenters[gx];
-                    const bz = blockCenters[gz];
+            for (let gx = 0; gx < blockX.length; gx++) {
+                for (let gz = 0; gz < blockZ.length; gz++) {
+                    const bx = blockX[gx];
+                    const bz = blockZ[gz];
 
-                    if ((bx === 23 && bz === 23) || (bx === PLAYER_HOME.x && bz === PLAYER_HOME.z)) {
+                    if (isNearAnyVenue(bx, bz, 12.5)) {
                         continue;
                     }
 
                     const subOffsets = [
-                        [-6.8, -6.8, 10.6, 10.6],
-                        [6.8, -6.8, 10.6, 10.6],
-                        [-6.8, 6.8, 10.6, 10.6],
-                        [6.8, 6.8, 10.6, 10.6]
+                        [-6.8, -6.8, 10.4, 10.4],
+                        [6.8, -6.8, 10.4, 10.4],
+                        [-6.8, 6.8, 10.4, 10.4],
+                        [6.8, 6.8, 10.4, 10.4]
                     ];
 
                     for (let k = 0; k < subOffsets.length; k++) {
@@ -1993,14 +2294,15 @@
             }
 
             const carSpawns = [
-                { type: "sports", x: 7, z: 16, rotY: 0, colorHex: "#ff2a85", colorNum: 0xff2a85, occupied: true },
-                { type: "taxi", x: -7, z: -14, rotY: Math.PI, colorHex: "#ffd43b", colorNum: 0xfacc15, occupied: true },
-                { type: "police", x: 46, z: -34, rotY: 0, colorHex: "#f8fafc", colorNum: 0xf8fafc, occupied: false },
-                { type: "police", x: -46, z: 48, rotY: Math.PI / 2, colorHex: "#f8fafc", colorNum: 0xf8fafc, occupied: false },
+                { type: "sports", x: 7, z: 36, rotY: 0, colorHex: "#ff2a85", colorNum: 0xff2a85, occupied: true },
+                { type: "taxi", x: -7, z: 6, rotY: Math.PI, colorHex: "#ffd43b", colorNum: 0xfacc15, occupied: true },
+                { type: "police", x: 46, z: -12, rotY: 0, colorHex: "#f8fafc", colorNum: 0xf8fafc, occupied: true },
+                { type: "police", x: -46, z: 54, rotY: Math.PI / 2, colorHex: "#f8fafc", colorNum: 0xf8fafc, occupied: true },
+                { type: "police", x: 46, z: -90, rotY: Math.PI, colorHex: "#f8fafc", colorNum: 0xf8fafc, occupied: true },
                 { type: "sports", x: 46, z: 28, rotY: 0, colorHex: "#00f0ff", colorNum: 0x00f0ff, occupied: true },
-                { type: "taxi", x: -46, z: -22, rotY: Math.PI, colorHex: "#ffd43b", colorNum: 0xfacc15, occupied: false },
-                { type: "sports", x: 0, z: -46, rotY: Math.PI / 2, colorHex: "#8b5cf6", colorNum: 0x8b5cf6, occupied: true },
-                { type: "taxi", x: 92, z: 12, rotY: 0, colorHex: "#ffd43b", colorNum: 0xfacc15, occupied: false }
+                { type: "taxi", x: -46, z: -38, rotY: Math.PI, colorHex: "#ffd43b", colorNum: 0xfacc15, occupied: false },
+                { type: "sports", x: 0, z: -68, rotY: Math.PI / 2, colorHex: "#8b5cf6", colorNum: 0x8b5cf6, occupied: true },
+                { type: "taxi", x: 92, z: 88, rotY: 0, colorHex: "#ffd43b", colorNum: 0xfacc15, occupied: false }
             ];
 
             for (let i = 0; i < carSpawns.length; i++) {
@@ -2015,11 +2317,12 @@
                     z: c.z,
                     rotY: c.rotY,
                     speed: 0,
-                    maxSpeed: isSports ? 34 : isPolice ? 30 : 25,
+                    maxSpeed: isSports ? 35 : isPolice ? 31 : 26,
                     accel: isSports ? 26 : isPolice ? 24 : 19,
                     colorHex: c.colorHex,
                     colorNum: c.colorNum,
                     occupied: Boolean(c.occupied),
+                    copDispatched: false,
                     enterCooldown: 2.0 + (i % 3),
                     turnTimer: 1.5 + (i % 3),
                     turnDir: i % 2 === 0 ? 1 : -1,
@@ -2031,14 +2334,16 @@
 
             const npcColors = ["#38bdf8", "#f472b6", "#a3e635", "#fb923c", "#c084fc"];
             const npcCoords = [
-                [8, 22], [-8, 22], [13, 14], [-13, 14],
+                [8, 42], [-8, 42], [13, 34], [-13, 34],
                 [32, 12], [-32, -12], [58, 22], [-58, -22],
-                [23, 33], [11, 33], [-23, 33], [23, -33],
-                [60, -56], [-60, 56], [8, 60], [-8, -60]
+                [23, 34], [11, 34], [-23, 34], [23, -33],
+                [60, -96], [-60, 96], [8, 110], [-8, -110],
+                [46, -6], [-46, 58], [46, -84]
             ];
 
             for (let i = 0; i < npcCoords.length; i++) {
                 const isBrawlerPair = i < 4;
+                const isCop = i >= 16;
                 const rivalIdx = i === 0 ? 1 : i === 1 ? 0 : i === 2 ? 3 : i === 3 ? 2 : -1;
                 pedestrians.push({
                     id: i,
@@ -2046,19 +2351,20 @@
                     y: 0,
                     z: npcCoords[i][1],
                     rotY: (i * 0.9) % (Math.PI * 2),
-                    speed: isBrawlerPair ? 3.4 : 2.3 + (i % 4) * 0.35,
-                    hp: 65,
+                    speed: isCop ? 4.4 : (isBrawlerPair ? 3.4 : 2.3 + (i % 4) * 0.35),
+                    hp: isCop ? 85 : 65,
                     alive: true,
                     inVehicle: null,
                     ejectTimer: 0,
                     respawnTimer: 0,
                     stepPhase: i * 0.7,
                     turnTimer: 1.2 + (i % 3),
-                    colorHex: npcColors[i % npcColors.length],
-                    voicePitch: 120 + (i % 6) * 24,
-                    mode: isBrawlerPair ? "brawl_npc" : "roam",
+                    colorHex: isCop ? "#2563eb" : npcColors[i % npcColors.length],
+                    voicePitch: isCop ? 112 : (120 + (i % 6) * 24),
+                    mode: isCop ? "cop_patrol" : (isBrawlerPair ? "brawl_npc" : "roam"),
                     rivalIdx: rivalIdx,
                     hitCooldown: 0,
+                    fireCooldown: 0.6,
                     talkCooldown: 1.4 + i * 0.6,
                     bubbleText: isBrawlerPair ? FIGHT_GROSS_PHRASES[i % FIGHT_GROSS_PHRASES.length] : "",
                     bubbleAngry: isBrawlerPair,
@@ -2070,16 +2376,16 @@
             }
 
             const itemDefs = [
-                { kind: "money", x: 0, z: 12 },
-                { kind: "money", x: 46, z: 0 },
-                { kind: "money", x: -46, z: 0 },
-                { kind: "money", x: 0, z: -46 },
-                { kind: "health", x: 23, z: 23 },
-                { kind: "health", x: -69, z: 23 },
-                { kind: "bribe", x: 69, z: -23 },
-                { kind: "bribe", x: -23, z: -69 },
-                { kind: "money", x: 69, z: 69 },
-                { kind: "health", x: -69, z: -69 }
+                { kind: "money", x: 0, z: 24 },
+                { kind: "money", x: 46, z: -22 },
+                { kind: "money", x: -46, z: 24 },
+                { kind: "money", x: 0, z: -114 },
+                { kind: "health", x: 23, z: 47 },
+                { kind: "health", x: -69, z: 70 },
+                { kind: "bribe", x: 69, z: -68 },
+                { kind: "bribe", x: -23, z: -160 },
+                { kind: "money", x: 69, z: 139 },
+                { kind: "health", x: -69, z: -137 }
             ];
 
             for (let i = 0; i < itemDefs.length; i++) {
@@ -2103,7 +2409,7 @@
         let threeScene = null;
         let threeCamera = null;
         let playerThreeGroup = null;
-        let pArmL = null, pArmR = null, pLegL = null, pLegR = null, pMuzzle = null;
+        let pTorsoMesh = null, pArmL = null, pArmR = null, pLegL = null, pLegR = null, pMuzzle = null;
 
         function buildWindowCanvasTexture(accentHex) {
             const c = document.createElement("canvas");
@@ -2163,13 +2469,13 @@
 
             threeScene = new THREE.Scene();
             threeScene.background = new THREE.Color(tm.skyHex);
-            threeScene.fog = new THREE.FogExp2(tm.skyHex, 0.0044);
+            threeScene.fog = new THREE.FogExp2(tm.skyHex, 0.0038);
 
             threeCamera = new THREE.PerspectiveCamera(
                 64,
                 window.innerWidth / Math.max(1, window.innerHeight),
                 0.2,
-                320
+                360
             );
 
             const hemi = new THREE.HemisphereLight(0xffb4e6, 0x1e1b4b, tm.ambient);
@@ -2181,7 +2487,7 @@
             threeScene.add(dir);
 
             const ground = new THREE.Mesh(
-                new THREE.PlaneGeometry(MAP_LIMIT * 2.4, MAP_LIMIT * 2.4),
+                new THREE.PlaneGeometry(MAP_WIDTH_X * 2.4, MAP_LENGTH_Z * 2.2),
                 new THREE.MeshLambertMaterial({ color: 0x1b182a })
             );
             ground.rotation.x = -Math.PI / 2;
@@ -2189,63 +2495,47 @@
             threeScene.add(ground);
 
             const yellowMat = new THREE.MeshBasicMaterial({ color: 0xfacc15 });
-            for (let i = 0; i < ROAD_CENTERS.length; i++) {
-                const rc = ROAD_CENTERS[i];
-                for (let x = -120; x <= 120; x += 20) {
-                    const dh = new THREE.Mesh(new THREE.BoxGeometry(7, 0.04, 0.35), yellowMat);
-                    dh.position.set(x, 0.02, rc);
-                    threeScene.add(dh);
-
-                    const dv = new THREE.Mesh(new THREE.BoxGeometry(0.35, 0.04, 7), yellowMat);
-                    dv.position.set(rc, 0.02, x);
+            for (let i = 0; i < ROAD_X_CENTERS.length; i++) {
+                const rc = ROAD_X_CENTERS[i];
+                for (let z = -200; z <= 200; z += 24) {
+                    const dv = new THREE.Mesh(new THREE.BoxGeometry(0.35, 0.04, 8), yellowMat);
+                    dv.position.set(rc, 0.02, z);
                     threeScene.add(dv);
                 }
             }
-
-            // Parque central (23, 23) con palmeras
-            const park = new THREE.Mesh(
-                new THREE.BoxGeometry(24, 0.36, 24),
-                new THREE.MeshLambertMaterial({ color: 0x16a34a })
-            );
-            park.position.set(23, 0.18, 23);
-            park.receiveShadow = true;
-            threeScene.add(park);
-
-            const palmSpots = [[16, 16], [30, 16], [16, 30], [30, 30]];
-            const trunkMat = new THREE.MeshLambertMaterial({ color: 0x854d0e });
-            const frondMat = new THREE.MeshLambertMaterial({ color: 0x22c55e });
-            for (let p = 0; p < palmSpots.length; p++) {
-                const px = palmSpots[p][0];
-                const pz = palmSpots[p][1];
-                const trunk = new THREE.Mesh(new THREE.CylinderGeometry(0.25, 0.4, 5.2, 6), trunkMat);
-                trunk.position.set(px, 2.8, pz);
-                threeScene.add(trunk);
-                const crown = new THREE.Mesh(new THREE.ConeGeometry(2.1, 1.7, 7), frondMat);
-                crown.position.set(px, 5.8, pz);
-                threeScene.add(crown);
+            for (let j = 0; j < ROAD_Z_CENTERS.length; j++) {
+                const rz = ROAD_Z_CENTERS[j];
+                for (let x = -120; x <= 120; x += 24) {
+                    const dh = new THREE.Mesh(new THREE.BoxGeometry(8, 0.04, 0.35), yellowMat);
+                    dh.position.set(x, 0.02, rz);
+                    threeScene.add(dh);
+                }
             }
 
-            // Casa del Protagonista en (-23, 23) con techo neón y punto de descanso
-            const homeYard = new THREE.Mesh(
-                new THREE.BoxGeometry(22, 0.34, 22),
-                new THREE.MeshLambertMaterial({ color: 0x1e1b4b })
-            );
-            homeYard.position.set(PLAYER_HOME.x, 0.17, PLAYER_HOME.z);
-            threeScene.add(homeYard);
+            // Locales reales y casas en el mundo con puerta/marcador de entrada
+            for (let v = 0; v < WORLD_VENUES.length; v++) {
+                const vn = WORLD_VENUES[v];
+                const pad = new THREE.Mesh(
+                    new THREE.BoxGeometry(11, 0.34, 11),
+                    new THREE.MeshLambertMaterial({ color: 0x1e1b4b })
+                );
+                pad.position.set(vn.x, 0.17, vn.z);
+                threeScene.add(pad);
 
-            const homeHouse = new THREE.Mesh(
-                new THREE.BoxGeometry(10, 5.5, 9),
-                new THREE.MeshLambertMaterial({ color: 0x312e81 })
-            );
-            homeHouse.position.set(PLAYER_HOME.x, 2.9, PLAYER_HOME.z - 2);
-            threeScene.add(homeHouse);
+                const struct = new THREE.Mesh(
+                    new THREE.BoxGeometry(7.2, 4.8, 6.8),
+                    new THREE.MeshLambertMaterial({ color: 0x2a244d })
+                );
+                struct.position.set(vn.x, 2.5, vn.z - 1.2);
+                threeScene.add(struct);
 
-            const homePad = new THREE.Mesh(
-                new THREE.CylinderGeometry(2.2, 2.2, 0.15, 16),
-                new THREE.MeshBasicMaterial({ color: 0x00f0ff })
-            );
-            homePad.position.set(PLAYER_HOME.x, 0.42, PLAYER_HOME.z + 5.5);
-            threeScene.add(homePad);
+                const beacon = new THREE.Mesh(
+                    new THREE.CylinderGeometry(1.7, 1.7, 0.16, 16),
+                    new THREE.MeshBasicMaterial({ color: vn.colorNum })
+                );
+                beacon.position.set(vn.x, 0.42, vn.z + 3.6);
+                threeScene.add(beacon);
+            }
 
             for (let i = 0; i < buildings.length; i++) {
                 const b = buildings[i];
@@ -2272,13 +2562,14 @@
             playerThreeGroup.position.set(player.x, player.y, player.z);
             playerThreeGroup.rotation.y = player.rotY;
 
-            const torso = new THREE.Mesh(
+            const curOutfit = OUTFIT_CATALOG[player.outfitIdx] || OUTFIT_CATALOG[0];
+            pTorsoMesh = new THREE.Mesh(
                 new THREE.BoxGeometry(0.88, 1.12, 0.48),
-                new THREE.MeshLambertMaterial({ color: 0xff2a85 })
+                new THREE.MeshLambertMaterial({ color: curOutfit.colorNum })
             );
-            torso.position.y = 1.42;
-            torso.castShadow = true;
-            playerThreeGroup.add(torso);
+            pTorsoMesh.position.y = 1.42;
+            pTorsoMesh.castShadow = true;
+            playerThreeGroup.add(pTorsoMesh);
 
             const head = new THREE.Mesh(
                 new THREE.BoxGeometry(0.6, 0.6, 0.6),
@@ -2425,6 +2716,10 @@
                 playerThreeGroup.visible = !game.inCar;
                 playerThreeGroup.position.set(player.x, player.y, player.z);
                 playerThreeGroup.rotation.y = player.rotY;
+                if (pTorsoMesh) {
+                    const out = OUTFIT_CATALOG[player.outfitIdx] || OUTFIT_CATALOG[0];
+                    pTorsoMesh.material.color.setHex(out.colorNum);
+                }
 
                 const swing = Math.sin(player.stepPhase) * 0.62;
                 if (pLegL && pLegR) {
@@ -2483,7 +2778,7 @@
                 if (!b.threeMesh) {
                     b.threeMesh = new THREE.Mesh(
                         new THREE.SphereGeometry(0.18, 6, 6),
-                        new THREE.MeshBasicMaterial({ color: 0xffd43b })
+                        new THREE.MeshBasicMaterial({ color: b.fromCop ? 0xff2a85 : 0xffd43b })
                     );
                     threeScene.add(b.threeMesh);
                 }
@@ -2561,10 +2856,10 @@
 
             ctx.strokeStyle = "rgba(250, 204, 21, 0.38)";
             ctx.lineWidth = 2;
-            for (let i = 0; i < ROAD_CENTERS.length; i++) {
-                const rc = ROAD_CENTERS[i];
+            for (let i = 0; i < ROAD_X_CENTERS.length; i++) {
+                const rc = ROAD_X_CENTERS[i];
                 const pA = projectWorldToScreen(rc, 0.05, game.camPos.z - 15, w, h, cosY, sinY, fov, horizonY);
-                const pB = projectWorldToScreen(rc, 0.05, game.camPos.z + 95, w, h, cosY, sinY, fov, horizonY);
+                const pB = projectWorldToScreen(rc, 0.05, game.camPos.z + 110, w, h, cosY, sinY, fov, horizonY);
                 if (pA && pB) {
                     ctx.beginPath();
                     ctx.moveTo(pA.sx, pA.sy);
@@ -2575,16 +2870,19 @@
 
             const drawList = [];
 
-            const homeP = projectWorldToScreen(PLAYER_HOME.x, 2.5, PLAYER_HOME.z, w, h, cosY, sinY, fov, horizonY);
-            if (homeP && homeP.depth < 125) {
-                drawList.push({ kind: "home", depth: homeP.depth, p: homeP });
+            for (let v = 0; v < WORLD_VENUES.length; v++) {
+                const vn = WORLD_VENUES[v];
+                const vp = projectWorldToScreen(vn.x, 2.2, vn.z, w, h, cosY, sinY, fov, horizonY);
+                if (vp && vp.depth < 135) {
+                    drawList.push({ kind: "venue", depth: vp.depth, p: vp, vn: vn });
+                }
             }
 
             for (let i = 0; i < buildings.length; i++) {
                 const b = buildings[i];
                 const baseP = projectWorldToScreen(b.x, 0, b.z, w, h, cosY, sinY, fov, horizonY);
                 const topP = projectWorldToScreen(b.x, b.h, b.z, w, h, cosY, sinY, fov, horizonY);
-                if (!baseP || !topP || baseP.depth > 130) continue;
+                if (!baseP || !topP || baseP.depth > 140) continue;
                 drawList.push({
                     kind: "building",
                     depth: baseP.depth,
@@ -2597,7 +2895,7 @@
             for (let i = 0; i < vehicles.length; i++) {
                 const v = vehicles[i];
                 const p = projectWorldToScreen(v.x, v.y + 0.7, v.z, w, h, cosY, sinY, fov, horizonY);
-                if (!p || p.depth > 125) continue;
+                if (!p || p.depth > 135) continue;
                 drawList.push({ kind: "car", depth: p.depth, p: p, v: v });
             }
 
@@ -2605,7 +2903,7 @@
                 const npc = pedestrians[i];
                 if (!npc.alive || npc.inVehicle) continue;
                 const p = projectWorldToScreen(npc.x, npc.y + 1.0, npc.z, w, h, cosY, sinY, fov, horizonY);
-                if (!p || p.depth > 110) continue;
+                if (!p || p.depth > 120) continue;
                 drawList.push({ kind: "npc", depth: p.depth, p: p, npc: npc });
             }
 
@@ -2613,14 +2911,14 @@
                 const pk = pickups[i];
                 if (!pk.active) continue;
                 const p = projectWorldToScreen(pk.x, pk.y, pk.z, w, h, cosY, sinY, fov, horizonY);
-                if (!p || p.depth > 110) continue;
+                if (!p || p.depth > 120) continue;
                 drawList.push({ kind: "pickup", depth: p.depth, p: p, pk: pk });
             }
 
             for (let i = 0; i < bullets.length; i++) {
                 const b = bullets[i];
                 const p = projectWorldToScreen(b.x, b.y, b.z, w, h, cosY, sinY, fov, horizonY);
-                if (p) drawList.push({ kind: "bullet", depth: p.depth, p: p });
+                if (p) drawList.push({ kind: "bullet", depth: p.depth, p: p, b: b });
             }
 
             if (!game.inCar) {
@@ -2634,16 +2932,18 @@
                 return b.depth - a.depth;
             });
 
+            const curOutfit = OUTFIT_CATALOG[player.outfitIdx] || OUTFIT_CATALOG[0];
+
             for (let i = 0; i < drawList.length; i++) {
                 const item = drawList[i];
-                if (item.kind === "home") {
-                    const hw = 7.5 * item.p.scale;
-                    const hh = 5.2 * item.p.scale;
-                    ctx.fillStyle = "#312e81";
-                    ctx.fillRect(item.p.sx - hw * 0.5, item.p.sy - hh * 0.5, hw, hh);
-                    ctx.strokeStyle = "#00f0ff";
+                if (item.kind === "venue") {
+                    const vw = 6.8 * item.p.scale;
+                    const vh = 4.6 * item.p.scale;
+                    ctx.fillStyle = "#262047";
+                    ctx.fillRect(item.p.sx - vw * 0.5, item.p.sy - vh * 0.5, vw, vh);
+                    ctx.strokeStyle = item.vn.colorHex;
                     ctx.lineWidth = Math.max(1.5, 2.2 * item.p.scale);
-                    ctx.strokeRect(item.p.sx - hw * 0.5, item.p.sy - hh * 0.5, hw, hh);
+                    ctx.strokeRect(item.p.sx - vw * 0.5, item.p.sy - vh * 0.5, vw, vh);
                 } else if (item.kind === "building") {
                     const bw = item.b.w * item.baseP.scale;
                     const bh = Math.max(4, item.baseP.sy - item.topP.sy);
@@ -2676,14 +2976,14 @@
                     ctx.arc(item.p.sx, item.p.sy, r, 0, Math.PI * 2);
                     ctx.fill();
                 } else if (item.kind === "bullet") {
-                    ctx.fillStyle = "#ffd43b";
+                    ctx.fillStyle = item.b && item.b.fromCop ? "#ff2a85" : "#ffd43b";
                     ctx.beginPath();
                     ctx.arc(item.p.sx, item.p.sy, Math.max(2.5, 0.25 * item.p.scale), 0, Math.PI * 2);
                     ctx.fill();
                 } else if (item.kind === "player") {
                     const pw = 0.95 * item.p.scale;
                     const ph = 2.3 * item.p.scale;
-                    ctx.fillStyle = "#ff2a85";
+                    ctx.fillStyle = curOutfit.colorHex;
                     ctx.fillRect(item.p.sx - pw * 0.5, item.p.sy - ph * 0.5, pw, ph);
                     ctx.fillStyle = "#00f0ff";
                     ctx.fillRect(item.p.sx - pw * 0.35, item.p.sy - ph * 0.42, pw * 0.7, ph * 0.14);
@@ -2696,7 +2996,7 @@
         function refreshSpeechBubbles() {
             const overlay = document.getElementById("speechOverlay");
             if (!overlay) return;
-            if (game.phase !== "playing") {
+            if (game.phase !== "playing" || game.paused) {
                 overlay.innerHTML = "";
                 return;
             }
@@ -2716,7 +3016,7 @@
                 const npc = pedestrians[i];
                 if (!npc.alive || npc.inVehicle || !npc.bubbleText || npc.bubbleTimer <= 0) continue;
                 const d = Math.hypot(npc.x - player.x, npc.z - player.z);
-                if (d > 48) continue;
+                if (d > 54) continue;
 
                 const proj = projectWorldToScreen(npc.x, npc.y + 2.45, npc.z, w, h, cosY, sinY, fov, horizonY);
                 if (!proj || proj.sx < 20 || proj.sx > w - 20 || proj.sy < 54 || proj.sy > h - 20) continue;
@@ -2732,8 +3032,224 @@
         }
 
         // =====================================================================
-        // 5. FÍSICA, CASA, ROBO CON EXPULSIÓN, NPCs EN AUTOS Y POLICÍA DIRECTA
+        // 5. MODALES DE PAUSA / TIENDAS / CASAS / BANCO, POLICÍA Y FÍSICA
         // =====================================================================
+        function openGameModal(mode) {
+            if (game.phase !== "playing") return;
+            game.paused = true;
+            game.activeModal = mode;
+            soundSys.stopCarRadio();
+
+            const overlay = document.getElementById("modalOverlay");
+            const titleEl = document.getElementById("modalTitle");
+            const bodyEl = document.getElementById("modalBody");
+            if (!overlay || !titleEl || !bodyEl) return;
+
+            let html = "";
+
+            if (mode === "pause") {
+                titleEl.textContent = "☰ MENÚ / PAUSA • $" + game.money;
+                html =
+                    '<div class="modal-grid">' +
+                    '<button class="modal-item-btn" data-act="rest_home"><span class="modal-item-name">🏠 Descansar en Casa</span><span class="modal-item-meta">+100 Salud • 0 ★</span><span class="modal-item-sub">Cambia hora y limpia búsqueda</span></button>' +
+                    '<button class="modal-item-btn" data-act="open_clothes"><span class="modal-item-name">👕 Tienda de Ropa</span><span class="modal-item-meta">Atuendos</span><span class="modal-item-sub">Cambia estilo del personaje</span></button>' +
+                    '<button class="modal-item-btn" data-act="open_food"><span class="modal-item-name">🍔 Local de Comida</span><span class="modal-item-meta">Salud</span><span class="modal-item-sub">Come para curarte</span></button>' +
+                    '<button class="modal-item-btn" data-act="open_weapons"><span class="modal-item-name">🔫 Armería</span><span class="modal-item-meta">4 Armas</span><span class="modal-item-sub">Compra o equipa armas</span></button>' +
+                    '<button class="modal-item-btn" data-act="open_properties"><span class="modal-item-name">🏡 Casas Comprables</span><span class="modal-item-meta">Propiedades</span><span class="modal-item-sub">Compra y entra a casas</span></button>' +
+                    '<button class="modal-item-btn" data-act="rob_bank"><span class="modal-item-name">🏦 Robar Banco (+3 ★)</span><span class="modal-item-meta">+$1600</span><span class="modal-item-sub">Asalta la bóveda con 3 estrellas</span></button>' +
+                    '</div>';
+            } else if (mode === "home") {
+                titleEl.textContent = "🏠 INTERIOR DE CASA • $" + game.money;
+                html =
+                    '<div class="modal-grid">' +
+                    '<button class="modal-item-btn" data-act="rest_home"><span class="modal-item-name">🛏️ Dormir / Descansar</span><span class="modal-item-meta">GRATIS</span><span class="modal-item-sub">Salud 100%, 0 estrellas y rota hora</span></button>' +
+                    '<button class="modal-item-btn" data-act="open_clothes"><span class="modal-item-name">🚪 Vestidor</span><span class="modal-item-meta">Ropa</span><span class="modal-item-sub">Elige tu ropa guardada</span></button>' +
+                    '<button class="modal-item-btn" data-act="open_properties"><span class="modal-item-name">🏡 Mis Casas</span><span class="modal-item-meta">Propiedades</span><span class="modal-item-sub">Ver o comprar otras casas</span></button>' +
+                    '<button class="modal-item-btn" data-act="exit_venue"><span class="modal-item-name">🚶 Salir a la Calle</span><span class="modal-item-meta">Puerta</span><span class="modal-item-sub">Volver a Vice Neon</span></button>' +
+                    '</div>';
+            } else if (mode === "clothes") {
+                titleEl.textContent = "👕 TIENDA DE ROPA • $" + game.money;
+                html = '<div class="modal-grid">';
+                for (let i = 0; i < OUTFIT_CATALOG.length; i++) {
+                    const o = OUTFIT_CATALOG[i];
+                    const owned = player.ownedOutfits.indexOf(i) !== -1;
+                    const eq = player.outfitIdx === i;
+                    const statusTxt = eq ? "EQUIPADA" : (owned ? "EQUIPAR" : ("$" + o.price));
+                    html +=
+                        '<button class="modal-item-btn" data-act="buy_outfit" data-idx="' + i + '">' +
+                        '<span class="modal-item-name">' + o.name + '</span>' +
+                        '<span class="modal-item-meta">' + statusTxt + '</span>' +
+                        '<span class="modal-item-sub">Toca para usar</span>' +
+                        '</button>';
+                }
+                html += '</div>';
+            } else if (mode === "food") {
+                titleEl.textContent = "🍔 LOCAL DE COMIDA • $" + game.money;
+                html = '<div class="modal-grid">';
+                for (let i = 0; i < FOOD_CATALOG.length; i++) {
+                    const f = FOOD_CATALOG[i];
+                    html +=
+                        '<button class="modal-item-btn" data-act="buy_food" data-idx="' + i + '">' +
+                        '<span class="modal-item-name">' + f.name + '</span>' +
+                        '<span class="modal-item-meta">$' + f.price + ' • +' + f.hp + ' ❤️</span>' +
+                        '<span class="modal-item-sub">' + f.msg + '</span>' +
+                        '</button>';
+                }
+                html += '</div>';
+            } else if (mode === "weapons") {
+                titleEl.textContent = "🔫 ARMERÍA • $" + game.money;
+                html = '<div class="modal-grid">';
+                for (let i = 0; i < WEAPON_CATALOG.length; i++) {
+                    const w = WEAPON_CATALOG[i];
+                    const tag = w.unlocked ? (game.weaponIdx === i ? "EQUIPADA" : "EQUIPAR") : ("$" + w.price);
+                    html +=
+                        '<button class="modal-item-btn" data-act="buy_weapon" data-idx="' + i + '">' +
+                        '<span class="modal-item-name">' + w.icon + " " + w.name + '</span>' +
+                        '<span class="modal-item-meta">' + tag + '</span>' +
+                        '<span class="modal-item-sub">Daño: ' + w.damage + '</span>' +
+                        '</button>';
+                }
+                html += '</div>';
+            } else if (mode === "properties") {
+                titleEl.textContent = "🏡 CASAS COMPRABLES • $" + game.money;
+                html = '<div class="modal-grid">';
+                for (let i = 0; i < WORLD_VENUES.length; i++) {
+                    const vn = WORLD_VENUES[i];
+                    if (vn.kind !== "property") continue;
+                    html +=
+                        '<button class="modal-item-btn" data-act="buy_house" data-idx="' + i + '">' +
+                        '<span class="modal-item-name">' + vn.icon + " " + vn.name + '</span>' +
+                        '<span class="modal-item-meta">' + (vn.owned ? "COMPRADA • DESCANSAR" : ("$" + vn.price)) + '</span>' +
+                        '<span class="modal-item-sub">Cura salud y limpia búsqueda</span>' +
+                        '</button>';
+                }
+                html += '</div>';
+            } else if (mode === "bank") {
+                titleEl.textContent = "🏦 BANCO CENTRAL • $" + game.money;
+                html =
+                    '<div class="modal-grid">' +
+                    '<button class="modal-item-btn" data-act="rob_bank" style="grid-column: span 2;">' +
+                    '<span class="modal-item-name">💰 ROBAR BÓVEDA DEL BANCO</span>' +
+                    '<span class="modal-item-meta">+$1600 • ACTIVA 3 ESTRELLAS ★★★</span>' +
+                    '<span class="modal-item-sub">La policía bajará de patrullas a dispararte</span>' +
+                    '</button>' +
+                    '</div>';
+            }
+
+            bodyEl.innerHTML = html;
+            overlay.classList.remove("hidden");
+        }
+
+        function closeGameModal() {
+            const overlay = document.getElementById("modalOverlay");
+            if (overlay) overlay.classList.add("hidden");
+            game.activeModal = null;
+            game.paused = false;
+            if (game.phase === "playing" && game.inCar && game.radioIdx > 0) {
+                soundSys.startCarRadio(game.radioIdx);
+            }
+            refreshHudAndRadar();
+        }
+
+        function handleModalAction(act, idxStr) {
+            const idx = parseInt(idxStr || "0", 10);
+
+            if (act === "rest_home") {
+                game.health = 100;
+                game.wanted = 0;
+                refreshStarsUI();
+                cycleTimeOfDay();
+                soundSys.playCashRegister();
+                closeGameModal();
+                pushToast("🏠 Descansaste: +100 Salud y 0 estrellas");
+            } else if (act === "exit_venue") {
+                closeGameModal();
+                pushToast("🚶 Saliste a la calle");
+            } else if (act === "open_clothes") {
+                openGameModal("clothes");
+            } else if (act === "open_food") {
+                openGameModal("food");
+            } else if (act === "open_weapons") {
+                openGameModal("weapons");
+            } else if (act === "open_properties") {
+                openGameModal("properties");
+            } else if (act === "buy_outfit") {
+                const o = OUTFIT_CATALOG[idx];
+                if (!o) return;
+                if (player.ownedOutfits.indexOf(idx) !== -1) {
+                    player.outfitIdx = idx;
+                    soundSys.playCashRegister();
+                    pushToast("👕 Ropa equipada: " + o.name);
+                    openGameModal("clothes");
+                } else if (game.money >= o.price) {
+                    game.money -= o.price;
+                    player.ownedOutfits.push(idx);
+                    player.outfitIdx = idx;
+                    soundSys.playCashRegister();
+                    pushToast("👕 Compraste y equipaste: " + o.name);
+                    openGameModal("clothes");
+                } else {
+                    pushToast("💸 Dinero insuficiente");
+                }
+            } else if (act === "buy_food") {
+                const f = FOOD_CATALOG[idx];
+                if (!f) return;
+                if (game.money >= f.price) {
+                    game.money -= f.price;
+                    game.health = Math.min(100, game.health + f.hp);
+                    soundSys.playCashRegister();
+                    pushToast(f.msg);
+                    openGameModal("food");
+                } else {
+                    pushToast("💸 Dinero insuficiente");
+                }
+            } else if (act === "buy_weapon") {
+                const w = WEAPON_CATALOG[idx];
+                if (!w) return;
+                if (w.unlocked) {
+                    game.weaponIdx = idx;
+                    soundSys.playCashRegister();
+                    pushToast(w.icon + " " + w.name + " equipada");
+                    openGameModal("weapons");
+                } else if (game.money >= w.price) {
+                    game.money -= w.price;
+                    w.unlocked = true;
+                    game.weaponIdx = idx;
+                    soundSys.playCashRegister();
+                    pushToast(w.icon + " ¡Compraste " + w.name + "!");
+                    openGameModal("weapons");
+                } else {
+                    pushToast("💸 Dinero insuficiente");
+                }
+            } else if (act === "buy_house") {
+                const vn = WORLD_VENUES[idx];
+                if (!vn) return;
+                if (vn.owned) {
+                    game.health = 100;
+                    game.wanted = 0;
+                    refreshStarsUI();
+                    soundSys.playCashRegister();
+                    closeGameModal();
+                    pushToast("🏡 Descansaste en " + vn.name);
+                } else if (game.money >= vn.price) {
+                    game.money -= vn.price;
+                    vn.owned = true;
+                    game.health = 100;
+                    soundSys.playCashRegister();
+                    pushToast("🏡 ¡Compraste " + vn.name + "!");
+                    openGameModal("properties");
+                } else {
+                    pushToast("💸 Dinero insuficiente");
+                }
+            } else if (act === "rob_bank") {
+                game.money += 1600;
+                soundSys.playCashRegister();
+                setWantedLevel(3, 3);
+                closeGameModal();
+                pushToast("🏦 ¡Banco robado! +$1600 • ★★★ Policía en camino");
+            }
+        }
+
         function hitsBuilding(x, z, radius) {
             for (let i = 0; i < buildings.length; i++) {
                 const b = buildings[i];
@@ -2745,11 +3261,12 @@
         }
 
         function clampInsideMap(obj) {
-            const lim = MAP_LIMIT - 6;
-            if (obj.x < -lim) obj.x = -lim;
-            if (obj.x > lim) obj.x = lim;
-            if (obj.z < -lim) obj.z = -lim;
-            if (obj.z > lim) obj.z = lim;
+            const limX = MAP_WIDTH_X - 6;
+            const limZ = MAP_LENGTH_Z - 6;
+            if (obj.x < -limX) obj.x = -limX;
+            if (obj.x > limX) obj.x = limX;
+            if (obj.z < -limZ) obj.z = -limZ;
+            if (obj.z > limZ) obj.z = limZ;
         }
 
         function readMovementAxes() {
@@ -2769,7 +3286,13 @@
         }
 
         function cycleWeapon() {
-            game.weaponIdx = (game.weaponIdx + 1) % WEAPON_CATALOG.length;
+            for (let step = 1; step <= WEAPON_CATALOG.length; step++) {
+                const cand = (game.weaponIdx + step) % WEAPON_CATALOG.length;
+                if (WEAPON_CATALOG[cand].unlocked) {
+                    game.weaponIdx = cand;
+                    break;
+                }
+            }
             const w = WEAPON_CATALOG[game.weaponIdx];
             pushToast(w.icon + " " + w.name);
             refreshHudAndRadar();
@@ -2778,11 +3301,26 @@
         function cycleCarRadio() {
             game.radioIdx = (game.radioIdx + 1) % RADIO_CHANNELS.length;
             const ch = RADIO_CHANNELS[game.radioIdx];
-            if (game.inCar) {
+            if (game.inCar && !game.paused) {
                 soundSys.startCarRadio(game.radioIdx);
             }
             pushToast(ch.label);
             refreshHudAndRadar();
+        }
+
+        function enterVenue(vn) {
+            if (!vn || vn.cooldown > 0) return;
+            vn.cooldown = 3.0;
+            if (vn.kind === "home") openGameModal("home");
+            else if (vn.kind === "clothes") openGameModal("clothes");
+            else if (vn.kind === "food") openGameModal("food");
+            else if (vn.kind === "weapons") openGameModal("weapons");
+            else if (vn.kind === "property") {
+                if (vn.owned) openGameModal("home");
+                else openGameModal("properties");
+            } else if (vn.kind === "bank") {
+                openGameModal("bank");
+            }
         }
 
         function stepPlayerOnFoot(dt) {
@@ -2791,10 +3329,6 @@
                 player.z = game.currentCar.z;
                 player.rotY = game.currentCar.rotY;
                 return;
-            }
-
-            if (player.homeCooldown > 0) {
-                player.homeCooldown = Math.max(0, player.homeCooldown - dt);
             }
 
             const axes = readMovementAxes();
@@ -2834,14 +3368,21 @@
                 player.stepPhase *= 0.85;
             }
 
-            if (player.homeCooldown <= 0 && Math.hypot(player.x - PLAYER_HOME.x, player.z - (PLAYER_HOME.z + 5.5)) < 2.8) {
-                player.homeCooldown = 8.0;
-                game.health = 100;
-                game.wanted = 0;
-                refreshStarsUI();
-                cycleTimeOfDay();
-                pushToast("🏠 Descansaste en casa: +100 Salud y sin búsqueda");
+            // Detectar entradas a casas, tiendas y banco
+            let foundVenue = null;
+            for (let v = 0; v < WORLD_VENUES.length; v++) {
+                const vn = WORLD_VENUES[v];
+                if (vn.cooldown > 0) vn.cooldown = Math.max(0, vn.cooldown - dt);
+                const dDoor = Math.hypot(player.x - vn.x, player.z - (vn.z + 3.6));
+                if (dDoor < 2.5) {
+                    foundVenue = vn;
+                    if (vn.cooldown <= 0) {
+                        enterVenue(vn);
+                        break;
+                    }
+                }
             }
+            game.nearbyVenue = foundVenue;
 
             if (player.punchTimer > 0) {
                 player.punchTimer = Math.max(0, player.punchTimer - dt);
@@ -2888,7 +3429,13 @@
 
             const lblEnter = document.getElementById("lblEnterExit");
             if (lblEnter) {
-                lblEnter.textContent = near ? (near.occupied ? "ROBAR" : "SUBIR") : "ENTRAR";
+                if (near) {
+                    lblEnter.textContent = near.occupied ? "ROBAR" : "SUBIR";
+                } else if (foundVenue) {
+                    lblEnter.textContent = "ENTRAR";
+                } else {
+                    lblEnter.textContent = "ENTRAR";
+                }
             }
         }
 
@@ -2912,7 +3459,7 @@
                     }
                 }
             } else {
-                soundSys.playShot(w.id);
+                soundSys.playShot(w.id, player.x, player.z);
                 if (pMuzzle) {
                     pMuzzle.visible = true;
                     setTimeout(function () {
@@ -2938,28 +3485,55 @@
                         vz: vz,
                         life: life,
                         damage: w.damage,
+                        fromCop: false,
                         threeMesh: null
                     });
                 }
-                setWantedLevel(w.id === "sniper" ? 2 : 1);
+                setWantedLevel(w.id === "sniper" ? 2 : 1, 0);
             }
+        }
+
+        function fireCopBullet(cop) {
+            const dx = player.x - cop.x;
+            const dz = player.z - cop.z;
+            const dist = Math.hypot(dx, dz);
+            if (dist < 1 || dist > 46) return;
+
+            cop.rotY = Math.atan2(dx, dz);
+            const spread = (Math.random() - 0.5) * 0.09;
+            const ang = cop.rotY + spread;
+            const spd = 56;
+            bullets.push({
+                x: cop.x + Math.sin(ang) * 0.9,
+                y: cop.y + 1.45,
+                z: cop.z + Math.cos(ang) * 0.9,
+                vx: Math.sin(ang) * spd,
+                vz: Math.cos(ang) * spd,
+                life: 0.9,
+                damage: 8,
+                fromCop: true,
+                threeMesh: null
+            });
+            soundSys.playShot("pistol", cop.x, cop.z);
         }
 
         function provokeAndHitNpc(npc, dmg, aggroPlayer) {
             if (!npc || !npc.alive || npc.inVehicle) return;
             npc.hp -= dmg;
             if (aggroPlayer) {
-                npc.mode = "attack_player";
+                npc.mode = npc.mode === "cop_patrol" ? "cop_chase" : "attack_player";
             }
-            const phrase = FIGHT_GROSS_PHRASES[(npc.id + game.money) % FIGHT_GROSS_PHRASES.length];
+            const phrase = npc.mode === "cop_chase"
+                ? POLICE_PHRASES[npc.id % POLICE_PHRASES.length]
+                : FIGHT_GROSS_PHRASES[(npc.id + game.money) % FIGHT_GROSS_PHRASES.length];
             triggerNpcSpeech(npc, phrase, true);
 
             if (npc.hp <= 0) {
                 npc.alive = false;
                 npc.respawnTimer = 9.0;
-                game.money += 60;
-                pushToast("+$60 • Peatón eliminado");
-                setWantedLevel(1);
+                game.money += 65;
+                pushToast("+$65 • Eliminado");
+                setWantedLevel(1, 0);
             }
         }
 
@@ -2989,15 +3563,39 @@
                 driver.x = car.x - Math.cos(car.rotY) * 2.2;
                 driver.z = car.z + Math.sin(car.rotY) * 2.2;
                 driver.ejectTimer = 0.65;
-                driver.mode = "chase_stolen_car";
+                driver.mode = car.type === "police" ? "cop_chase" : "chase_stolen_car";
                 soundSys.playPunch(driver.x, driver.z);
-                const msg = STEAL_PHRASES[driver.id % STEAL_PHRASES.length];
+                const msg = car.type === "police"
+                    ? POLICE_PHRASES[driver.id % POLICE_PHRASES.length]
+                    : STEAL_PHRASES[driver.id % STEAL_PHRASES.length];
                 triggerNpcSpeech(driver, msg, true);
+            }
+        }
+
+        /**
+         * Hace que la patrulla baje un oficial armado para disparar a pie al acercarse.
+         */
+        function deployCopFromPatrol(car) {
+            if (!car || car.type !== "police" || car.copDispatched) return;
+            for (let i = 0; i < pedestrians.length; i++) {
+                const npc = pedestrians[i];
+                if (npc.alive && !npc.inVehicle && npc.mode === "cop_patrol") {
+                    car.copDispatched = true;
+                    car.occupied = false;
+                    npc.x = car.x - Math.cos(car.rotY) * 2.2;
+                    npc.z = car.z + Math.sin(car.rotY) * 2.2;
+                    npc.mode = "cop_chase";
+                    npc.fireCooldown = 0.45;
+                    triggerNpcSpeech(npc, POLICE_PHRASES[npc.id % POLICE_PHRASES.length], true);
+                    soundSys.playPoliceSiren(npc.x, npc.z);
+                    return;
+                }
             }
         }
 
         function enterCar(car) {
             if (!car || game.inCar) return;
+            const isPoliceCar = car.type === "police";
             if (car.occupied) {
                 ejectDriverFromCar(car);
             }
@@ -3006,11 +3604,16 @@
             game.nearbyCar = null;
             document.getElementById("footActionGrid").classList.add("hidden");
             document.getElementById("carActionGrid").classList.remove("hidden");
-            if (game.radioIdx > 0) {
+            if (game.radioIdx > 0 && !game.paused) {
                 soundSys.startCarRadio(game.radioIdx);
             }
-            setWantedLevel(car.type === "police" ? 2 : 1);
-            pushToast(car.type === "police" ? "🚓 ¡Patrulla robada!" : "🚗 ¡Al volante! " + RADIO_CHANNELS[game.radioIdx].label);
+            if (isPoliceCar) {
+                setWantedLevel(3, 3);
+                pushToast("🚓 ¡Patrulla robada! +3 Estrellas ★★★");
+            } else {
+                setWantedLevel(1, 0);
+                pushToast("🚗 ¡Al volante! " + RADIO_CHANNELS[game.radioIdx].label);
+            }
         }
 
         function exitCar() {
@@ -3033,7 +3636,7 @@
         }
 
         function stepVehicles(dt) {
-            const stopDist = 6.2;
+            const stopDist = 9.5;
 
             for (let i = 0; i < vehicles.length; i++) {
                 const v = vehicles[i];
@@ -3104,8 +3707,9 @@
 
                         if (dist <= stopDist) {
                             v.speed = 0;
+                            deployCopFromPatrol(v);
                         } else {
-                            const desiredSpd = Math.min(v.maxSpeed * 0.92, Math.max(4, (dist - stopDist) * 2.4));
+                            const desiredSpd = Math.min(v.maxSpeed * 0.94, Math.max(5, (dist - stopDist) * 2.4));
                             if (v.speed < desiredSpd) {
                                 v.speed = Math.min(desiredSpd, v.speed + 24 * dt);
                             } else {
@@ -3127,6 +3731,7 @@
                     if (hitsBuilding(nx, nz, 1.5)) {
                         if (pursuit) {
                             v.speed = 0;
+                            deployCopFromPatrol(v);
                         } else {
                             v.rotY += Math.PI * 0.5;
                         }
@@ -3140,6 +3745,13 @@
         }
 
         function stepPedestrians(dt) {
+            if (game.wanted > 0 && game.sirenCooldown <= 0) {
+                game.sirenCooldown = 3.2;
+                soundSys.playPoliceSiren(player.x, player.z);
+            } else if (game.sirenCooldown > 0) {
+                game.sirenCooldown = Math.max(0, game.sirenCooldown - dt);
+            }
+
             for (let i = 0; i < pedestrians.length; i++) {
                 const npc = pedestrians[i];
                 if (!npc.alive) {
@@ -3147,10 +3759,10 @@
                     if (npc.respawnTimer <= 0) {
                         npc.alive = true;
                         npc.inVehicle = null;
-                        npc.hp = 65;
-                        npc.mode = i < 4 ? "brawl_npc" : "roam";
-                        npc.x = ((i * 37) % 150) - 75;
-                        npc.z = ((i * 53) % 150) - 75;
+                        npc.hp = i >= 16 ? 85 : 65;
+                        npc.mode = i >= 16 ? "cop_patrol" : (i < 4 ? "brawl_npc" : "roam");
+                        npc.x = ((i * 37) % 140) - 70;
+                        npc.z = ((i * 61) % 260) - 130;
                     }
                     continue;
                 }
@@ -3188,11 +3800,33 @@
                 if (npc.hitCooldown > 0) {
                     npc.hitCooldown = Math.max(0, npc.hitCooldown - dt);
                 }
+                if (npc.fireCooldown > 0) {
+                    npc.fireCooldown = Math.max(0, npc.fireCooldown - dt);
+                }
                 npc.talkCooldown -= dt;
 
                 let moveSpd = npc.speed;
 
-                if (npc.mode === "chase_stolen_car") {
+                // Policía activa cuando hay estrellas de búsqueda: baja / avanza y dispara
+                if (game.phase === "playing" && (npc.mode === "cop_chase" || (npc.mode === "cop_patrol" && game.wanted > 0))) {
+                    const dx = player.x - npc.x;
+                    const dz = player.z - npc.z;
+                    const dist = Math.hypot(dx, dz);
+                    if (dist < 56) {
+                        npc.mode = "cop_chase";
+                        npc.rotY = Math.atan2(dx, dz);
+                        moveSpd = dist > 11 ? 5.8 : 1.2;
+                        if (dist < 38 && npc.fireCooldown <= 0) {
+                            npc.fireCooldown = 1.05;
+                            fireCopBullet(npc);
+                            if (npc.talkCooldown <= 0) {
+                                triggerNpcSpeech(npc, POLICE_PHRASES[npc.id % POLICE_PHRASES.length], true);
+                            }
+                        }
+                    } else if (game.wanted === 0) {
+                        npc.mode = "cop_patrol";
+                    }
+                } else if (npc.mode === "chase_stolen_car") {
                     const dx = player.x - npc.x;
                     const dz = player.z - npc.z;
                     const dist = Math.hypot(dx, dz);
@@ -3264,7 +3898,7 @@
                             }
                         }
                     }
-                    if (!npc.inVehicle && game.phase === "playing" && npc.talkCooldown <= 0 && Math.hypot(npc.x - player.x, npc.z - player.z) < 38) {
+                    if (!npc.inVehicle && game.phase === "playing" && npc.talkCooldown <= 0 && Math.hypot(npc.x - player.x, npc.z - player.z) < 40) {
                         const line = CASUAL_PHRASES[(i + Math.floor(performance.now() * 0.001)) % CASUAL_PHRASES.length];
                         triggerNpcSpeech(npc, line, false);
                     }
@@ -3294,13 +3928,20 @@
 
                 let remove = b.life <= 0 || hitsBuilding(b.x, b.z, 0.25);
                 if (!remove) {
-                    for (let p = 0; p < pedestrians.length; p++) {
-                        const npc = pedestrians[p];
-                        if (!npc.alive || npc.inVehicle) continue;
-                        if (Math.hypot(npc.x - b.x, npc.z - b.z) < 1.35) {
-                            provokeAndHitNpc(npc, b.damage, true);
+                    if (b.fromCop) {
+                        if (!game.inCar && Math.hypot(b.x - player.x, b.z - player.z) < 1.25) {
+                            inflictPlayerDamage(b.damage);
                             remove = true;
-                            break;
+                        }
+                    } else {
+                        for (let p = 0; p < pedestrians.length; p++) {
+                            const npc = pedestrians[p];
+                            if (!npc.alive || npc.inVehicle) continue;
+                            if (Math.hypot(npc.x - b.x, npc.z - b.z) < 1.35) {
+                                provokeAndHitNpc(npc, b.damage, true);
+                                remove = true;
+                                break;
+                            }
                         }
                     }
                 }
@@ -3323,12 +3964,13 @@
                     pk.respawnTimer = 14;
                     if (pk.kind === "money") {
                         game.money += 250;
+                        soundSys.playCashRegister();
                         pushToast("💵 +$250");
                     } else if (pk.kind === "health") {
                         game.health = Math.min(100, game.health + 40);
                         pushToast("❤️ +40 Salud");
                     } else if (pk.kind === "bribe") {
-                        setWantedLevel(-2);
+                        setWantedLevel(-2, 0);
                         pushToast("⭐ Soborno: -2 Búsqueda");
                     }
                 }
@@ -3338,8 +3980,8 @@
                 const runningFast = !game.inCar && (input.run || Math.hypot(input.jx, input.jy) > 0.75);
                 game.wantedTimer -= dt * (runningFast ? 1.65 : 1.0);
                 if (game.wantedTimer <= 0) {
-                    game.wantedTimer = 7.5;
-                    setWantedLevel(-1);
+                    game.wantedTimer = 8.5;
+                    setWantedLevel(-1, 0);
                 }
             }
         }
@@ -3349,7 +3991,10 @@
             game.health = Math.max(0, game.health - amount);
             if (game.health <= 0) {
                 game.phase = "wasted";
-                soundSys.stopCarRadio();
+                game.paused = false;
+                closeGameModal();
+                soundSys.stopAllMusicExclusive();
+                soundSys.playWastedExplosion8Bit();
                 document.getElementById("speechOverlay").innerHTML = "";
                 document.getElementById("sniperScope").classList.add("hidden");
                 document.getElementById("hudLayer").classList.add("hidden");
@@ -3367,7 +4012,7 @@
             game.camPitchOffset = 0;
             player.x = 0;
             player.y = 0;
-            player.z = 24;
+            player.z = 44;
             player.rotY = 0;
             document.getElementById("carActionGrid").classList.add("hidden");
             document.getElementById("footActionGrid").classList.remove("hidden");
@@ -3398,7 +4043,7 @@
                     '<div class="intro-anim-card">' +
                     '<div style="font-size:10px;font-weight:900;letter-spacing:0.22em;color:#00f0ff;margin-bottom:6px;">RAPHAPRO900 STUDIOS</div>' +
                     '<div class="gta-title gta-outline" style="font-style:italic;font-size:clamp(3rem,12vw,4.8rem);line-height:0.95;background:linear-gradient(90deg,#ffd43b,#ff2a85,#00f0ff);-webkit-background-clip:text;background-clip:text;color:transparent;">VICE NEON</div>' +
-                    '<div style="margin-top:8px;font-size:11px;font-weight:800;letter-spacing:0.14em;color:#f8fafc;">4 ARMAS • RADIO • PELEAS • 5 ESTRELLAS</div>' +
+                    '<div style="margin-top:8px;font-size:11px;font-weight:800;letter-spacing:0.14em;color:#f8fafc;">TIENDAS • BANCO • RADIO • 5 ESTRELLAS</div>' +
                     '</div>';
             }
         }
@@ -3407,6 +4052,7 @@
             soundSys.unlock();
             soundSys.startIntroAudio();
             game.phase = "intro";
+            game.paused = false;
             game.introTime = 0;
             game.introStageShown = 1;
 
@@ -3425,6 +4071,7 @@
             document.getElementById("wastedBanner").classList.add("hidden");
             document.getElementById("hudLayer").classList.remove("hidden");
             game.phase = "playing";
+            game.paused = false;
             refreshStarsUI();
             refreshHudAndRadar();
             pushToast("🌴 ¡Bienvenido a VICE NEON!");
@@ -3451,19 +4098,19 @@
             if (t < 3.25) {
                 const p = t / 3.25;
                 const ang = -0.5 + p * 0.65;
-                const rad = 68 - p * 12;
+                const rad = 74 - p * 12;
                 game.camPos.x = Math.sin(ang) * rad;
                 game.camPos.y = 28 - p * 6;
-                game.camPos.z = Math.cos(ang) * rad;
+                game.camPos.z = Math.cos(ang) * rad + 20;
                 game.camLook.x = 0;
                 game.camLook.y = 7;
-                game.camLook.z = 0;
+                game.camLook.z = 20;
             } else {
                 const p = Math.min(1, (t - 3.25) / 3.15);
                 const ease = 1 - Math.pow(1 - p, 3);
                 const sx = 16;
                 const sy = 15;
-                const sz = 42;
+                const sz = 60;
                 const ex = player.x - Math.sin(player.rotY) * 8.6;
                 const ey = player.y + 4.3;
                 const ez = player.z - Math.cos(player.rotY) * 8.6;
@@ -3483,12 +4130,12 @@
         function stepCamera(dt) {
             if (game.phase === "entry") {
                 const a = performance.now() * 0.00022;
-                game.camPos.x = Math.cos(a) * 64;
+                game.camPos.x = Math.cos(a) * 68;
                 game.camPos.y = 26;
-                game.camPos.z = Math.sin(a) * 64;
+                game.camPos.z = Math.sin(a) * 88 + 20;
                 game.camLook.x = 0;
                 game.camLook.y = 6;
-                game.camLook.z = 0;
+                game.camLook.z = 20;
                 return;
             }
 
@@ -3554,7 +4201,7 @@
             }
             if (scopeEl) {
                 const w = WEAPON_CATALOG[game.weaponIdx];
-                const showScope = game.phase === "playing" && !game.inCar && w && w.id === "sniper" && input.attack;
+                const showScope = game.phase === "playing" && !game.paused && !game.inCar && w && w.id === "sniper" && input.attack;
                 scopeEl.classList.toggle("hidden", !showScope);
             }
 
@@ -3569,7 +4216,7 @@
             ctx.fillRect(0, 0, rw, rh);
 
             const focus = game.inCar && game.currentCar ? game.currentCar : player;
-            const span = 92;
+            const span = 104;
             const scale = (rw * 0.48) / span;
             const cx = rw * 0.5;
             const cy = rh * 0.5;
@@ -3582,28 +4229,33 @@
             }
 
             ctx.strokeStyle = "#1e293b";
-            ctx.lineWidth = 4;
-            for (let i = 0; i < ROAD_CENTERS.length; i++) {
-                const r = ROAD_CENTERS[i];
-                const h1 = mapPt(-140, r);
-                const h2 = mapPt(140, r);
-                ctx.beginPath();
-                ctx.moveTo(h1.x, h1.y);
-                ctx.lineTo(h2.x, h2.y);
-                ctx.stroke();
-
-                const v1 = mapPt(r, -140);
-                const v2 = mapPt(r, 140);
+            ctx.lineWidth = 3.5;
+            for (let i = 0; i < ROAD_X_CENTERS.length; i++) {
+                const r = ROAD_X_CENTERS[i];
+                const v1 = mapPt(r, -230);
+                const v2 = mapPt(r, 230);
                 ctx.beginPath();
                 ctx.moveTo(v1.x, v1.y);
                 ctx.lineTo(v2.x, v2.y);
                 ctx.stroke();
             }
+            for (let j = 0; j < ROAD_Z_CENTERS.length; j++) {
+                const rz = ROAD_Z_CENTERS[j];
+                const h1 = mapPt(-145, rz);
+                const h2 = mapPt(145, rz);
+                ctx.beginPath();
+                ctx.moveTo(h1.x, h1.y);
+                ctx.lineTo(h2.x, h2.y);
+                ctx.stroke();
+            }
 
-            const hp = mapPt(PLAYER_HOME.x, PLAYER_HOME.z);
-            if (hp.x >= -4 && hp.x <= rw + 4 && hp.y >= -4 && hp.y <= rh + 4) {
-                ctx.fillStyle = "#00f0ff";
-                ctx.fillRect(hp.x - 3, hp.y - 3, 6, 6);
+            for (let v = 0; v < WORLD_VENUES.length; v++) {
+                const vn = WORLD_VENUES[v];
+                const vp = mapPt(vn.x, vn.z);
+                if (vp.x >= -4 && vp.x <= rw + 4 && vp.y >= -4 && vp.y <= rh + 4) {
+                    ctx.fillStyle = vn.colorHex;
+                    ctx.fillRect(vp.x - 2.6, vp.y - 2.6, 5.2, 5.2);
+                }
             }
 
             for (let i = 0; i < pickups.length; i++) {
@@ -3613,7 +4265,7 @@
                 if (mp.x < 0 || mp.x > rw || mp.y < 0 || mp.y > rh) continue;
                 ctx.fillStyle = pk.kind === "money" ? "#4ade80" : pk.kind === "health" ? "#fb7185" : "#ffd43b";
                 ctx.beginPath();
-                ctx.arc(mp.x, mp.y, 2.3, 0, Math.PI * 2);
+                ctx.arc(mp.x, mp.y, 2.2, 0, Math.PI * 2);
                 ctx.fill();
             }
 
@@ -3622,7 +4274,7 @@
                 if (!npc.alive || npc.inVehicle) continue;
                 const mp = mapPt(npc.x, npc.z);
                 if (mp.x < 0 || mp.x > rw || mp.y < 0 || mp.y > rh) continue;
-                const hostile = npc.mode === "brawl_npc" || npc.mode === "attack_player" || npc.mode === "chase_stolen_car";
+                const hostile = npc.mode === "brawl_npc" || npc.mode === "attack_player" || npc.mode === "chase_stolen_car" || npc.mode === "cop_chase";
                 ctx.fillStyle = hostile ? "#ff2a85" : "#a3e635";
                 ctx.beginPath();
                 ctx.arc(mp.x, mp.y, 1.9, 0, Math.PI * 2);
@@ -3825,6 +4477,33 @@
                 });
             }
 
+            const btnPauseMenu = document.getElementById("btnPauseMenu");
+            if (btnPauseMenu) {
+                btnPauseMenu.addEventListener("click", function (e) {
+                    e.stopPropagation();
+                    if (game.paused) closeGameModal();
+                    else openGameModal("pause");
+                });
+            }
+
+            const btnCloseModal = document.getElementById("btnCloseModal");
+            if (btnCloseModal) {
+                btnCloseModal.addEventListener("click", function (e) {
+                    e.stopPropagation();
+                    closeGameModal();
+                });
+            }
+
+            const modalBody = document.getElementById("modalBody");
+            if (modalBody) {
+                modalBody.addEventListener("click", function (e) {
+                    const btn = e.target && e.target.closest ? e.target.closest(".modal-item-btn") : null;
+                    if (!btn) return;
+                    e.stopPropagation();
+                    handleModalAction(btn.getAttribute("data-act"), btn.getAttribute("data-idx"));
+                });
+            }
+
             const btnTimeCycle = document.getElementById("btnTimeCycle");
             if (btnTimeCycle) {
                 btnTimeCycle.addEventListener("click", function (e) {
@@ -3859,7 +4538,7 @@
 
             if (lookZone) {
                 lookZone.addEventListener("touchstart", function (e) {
-                    if (lookTouchId !== null || game.phase !== "playing") return;
+                    if (lookTouchId !== null || game.phase !== "playing" || game.paused) return;
                     const t = e.changedTouches[0];
                     if (!t) return;
                     lookTouchId = t.identifier;
@@ -3868,7 +4547,7 @@
                 }, { passive: true });
 
                 lookZone.addEventListener("touchmove", function (e) {
-                    if (lookTouchId === null || game.phase !== "playing") return;
+                    if (lookTouchId === null || game.phase !== "playing" || game.paused) return;
                     for (let i = 0; i < e.changedTouches.length; i++) {
                         const t = e.changedTouches[i];
                         if (t.identifier === lookTouchId) {
@@ -3984,6 +4663,7 @@
             wireTapButton("btnEnterExit", function () {
                 if (game.inCar) exitCar();
                 else if (game.nearbyCar) enterCar(game.nearbyCar);
+                else if (game.nearbyVenue) enterVenue(game.nearbyVenue);
                 else cycleWeapon();
             });
 
@@ -4005,9 +4685,16 @@
 
             window.addEventListener("keydown", function (e) {
                 input.keys[e.code] = true;
+                if (e.code === "Escape" || e.code === "KeyP") {
+                    if (game.phase === "playing") {
+                        if (game.paused) closeGameModal();
+                        else openGameModal("pause");
+                    }
+                }
                 if (e.code === "KeyE") {
                     if (game.inCar) exitCar();
                     else if (game.nearbyCar) enterCar(game.nearbyCar);
+                    else if (game.nearbyVenue) enterVenue(game.nearbyVenue);
                 }
                 if (e.code === "KeyQ") {
                     cycleWeapon();
@@ -4022,12 +4709,12 @@
                     pushToast("🔫 PISTOLA");
                     refreshHudAndRadar();
                 }
-                if (e.code === "Digit3") {
+                if (e.code === "Digit3" && WEAPON_CATALOG[2].unlocked) {
                     game.weaponIdx = 2;
                     pushToast("💥 ESCOPETA");
                     refreshHudAndRadar();
                 }
-                if (e.code === "Digit4") {
+                if (e.code === "Digit4" && WEAPON_CATALOG[3].unlocked) {
                     game.weaponIdx = 3;
                     pushToast("🎯 FRANCOTIRADOR");
                     refreshHudAndRadar();
@@ -4081,6 +4768,16 @@
                 const dt = Math.max(0.001, Math.min(0.05, (now - prevTime) / 1000));
                 prevTime = now;
                 const elapsed = now / 1000;
+
+                if (game.paused) {
+                    if (game.useFallback2D || !threeRenderer) {
+                        renderFallback2D3D(elapsed);
+                    } else {
+                        syncThreeFrame(elapsed);
+                    }
+                    refreshSpeechBubbles();
+                    return;
+                }
 
                 if (game.phase === "intro") {
                     stepVehicles(dt);
