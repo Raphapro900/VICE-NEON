@@ -31,7 +31,7 @@
             overflow: hidden;
             background-color: var(--bg-dark);
             color: #ffffff;
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            font-family: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
             touch-action: none;
         }
 
@@ -39,22 +39,25 @@
             display: none !important;
         }
 
-        /* 3D rendering canvases always present from frame 0 */
+        /* Dual 3D rendering canvases active immediately from frame 0 */
         #webglCanvas, #fallbackCanvas2D {
             position: fixed;
             inset: 0;
             width: 100%;
             height: 100%;
             display: block;
-            z-index: 1;
             touch-action: none;
+        }
+
+        #webglCanvas {
+            z-index: 1;
         }
 
         #fallbackCanvas2D {
             z-index: 2;
         }
 
-        /* Lightning flash overlay during storms */
+        /* Storm lightning flash overlay */
         #lightningFlash {
             position: fixed;
             inset: 0;
@@ -65,7 +68,7 @@
             transition: opacity 0.08s ease-out;
         }
 
-        /* Speech & brawl bubbles */
+        /* Dialogue & street fight speech bubbles */
         #speechOverlay {
             position: fixed;
             inset: 0;
@@ -77,17 +80,17 @@
         .speech-bubble {
             position: fixed;
             transform: translate(-50%, -100%);
-            max-width: 240px;
-            padding: 4px 9px;
-            border-radius: 10px;
-            background: rgba(10, 7, 22, 0.92);
-            border: 1.5px solid rgba(0, 240, 255, 0.78);
+            max-width: 250px;
+            padding: 5px 10px;
+            border-radius: 12px;
+            background: rgba(10, 7, 22, 0.93);
+            border: 1.5px solid rgba(0, 240, 255, 0.82);
             color: #ffffff;
-            font-size: 10px;
+            font-size: 10.5px;
             font-weight: 800;
-            line-height: 1.2;
+            line-height: 1.25;
             text-align: center;
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.68);
+            box-shadow: 0 5px 14px rgba(0, 0, 0, 0.72);
             white-space: nowrap;
             overflow: hidden;
             text-overflow: ellipsis;
@@ -96,10 +99,10 @@
         .speech-bubble.angry {
             border-color: #ff2a85;
             color: #ffe4e6;
-            background: rgba(38, 6, 22, 0.95);
+            background: rgba(42, 6, 24, 0.96);
         }
 
-        /* Sniper scope */
+        /* Sniper scope overlay */
         #sniperScope {
             position: fixed;
             inset: 0;
@@ -155,7 +158,7 @@
                 0 0 38px rgba(0, 240, 255, 0.35);
         }
 
-        /* Translucent Entry Overlay */
+        /* Translucent Entry Screen */
         #entryScreen {
             position: fixed;
             inset: 0;
@@ -168,7 +171,7 @@
             background:
                 radial-gradient(circle at 50% 24%, rgba(255, 42, 133, 0.16), transparent 55%),
                 radial-gradient(circle at 82% 78%, rgba(0, 240, 255, 0.14), transparent 55%),
-                linear-gradient(180deg, rgba(7, 5, 16, 0.44) 0%, rgba(20, 8, 38, 0.24) 55%, rgba(6, 4, 13, 0.52) 100%);
+                linear-gradient(180deg, rgba(7, 5, 16, 0.42) 0%, rgba(20, 8, 38, 0.22) 55%, rgba(6, 4, 13, 0.50) 100%);
         }
 
         .entry-top-pill {
@@ -668,7 +671,7 @@
             background: linear-gradient(145deg, rgba(236, 72, 153, 0.78), rgba(14, 116, 144, 0.9));
         }
 
-        /* Modal overlay for Pause/Menu & Inside Buildings */
+        /* Modal overlay for Pause Menu & Interior Venues */
         #modalOverlay {
             position: fixed;
             inset: 0;
@@ -916,12 +919,12 @@
     <!-- Storm lightning flash -->
     <div id="lightningFlash"></div>
 
-    <!-- Audio elements for local/folder MP3 tracks -->
+    <!-- Single-channel MP3 elements -->
     <audio id="audioIntro" src="intro.mp3" preload="auto" playsinline></audio>
     <audio id="audioFunky" src="funky.mp3" loop preload="auto" playsinline></audio>
     <audio id="audio900" src="Estación 900 FM - Megamix 90s_Audio.mp3" loop preload="auto" playsinline></audio>
 
-    <!-- Speech & combat bubbles -->
+    <!-- Dialogue & fight bubbles -->
     <div id="speechOverlay"></div>
 
     <!-- Sniper scope -->
@@ -931,7 +934,7 @@
         <div class="sniper-cross-v"></div>
     </div>
 
-    <!-- Entry Screen -->
+    <!-- Translucent Entry Screen -->
     <section id="entryScreen" aria-label="Inicio de VICE NEON">
         <div class="entry-top-pill">RAPHAPRO900 STUDIOS • HORIZONTAL MOBILE</div>
 
@@ -977,7 +980,7 @@
         <div class="intro-bar intro-bar-bottom">
             <div style="display: flex; justify-content: space-between; font-size: 10px; font-weight: 700; color: #cbd5e1;">
                 <span id="introSubtitleText">RAPHAPRO900 STUDIOS PRESENTA</span>
-                <span id="introTimeText">0.0s / 6.4s</span>
+                <span id="introProgressLabel">INTRO</span>
             </div>
             <div class="intro-meter">
                 <div id="introMeterFill"></div>
@@ -1013,7 +1016,7 @@
 
             <div class="hud-cluster">
                 <button id="btnPauseMenu" class="hud-btn menu-btn" type="button">☰ MENÚ / PAUSA</button>
-                <button id="btnTimeCycle" class="hud-btn" type="button">☀️ DÍA 10:00</button>
+                <button id="btnTimeCycle" class="hud-btn" type="button">☀️ DÍA</button>
                 <div id="hudModeInfo" class="hud-chip">🔫 PISTOLA</div>
                 <button id="btnCamSwitch" class="hud-btn" type="button">📷 3ª PER</button>
                 <button id="btnMuteAudio" class="hud-btn" type="button">🔊 MUTE</button>
@@ -1021,7 +1024,7 @@
         </div>
 
         <div id="toastBanner" class="hidden"></div>
-        <div id="audioStatusBadge">🎵 AUDIO: BUSCANDO PISTAS</div>
+        <div id="audioStatusBadge">🎵 AUDIO: LISTO • TOMODACHI VOICE</div>
 
         <!-- Bottom Left: Radar + Joystick -->
         <div class="left-lower-hud">
@@ -1095,7 +1098,7 @@
         </div>
     </div>
 
-    <!-- Non-blocking Portrait Notice -->
+    <!-- Non-blocking portrait notice -->
     <aside id="portraitNotice" class="hidden" aria-label="Girar pantalla a horizontal">
         <div style="display:flex;align-items:center;gap:8px;text-align:left;">
             <span style="font-size:20px;">🔄</span>
@@ -1196,7 +1199,7 @@
                     if (done) return;
                     done = true;
                     reject(new Error("Timeout cargando " + url));
-                }, timeoutMs || 2200);
+                }, timeoutMs || 2000);
 
                 script.onload = function () {
                     if (done) return;
@@ -1231,7 +1234,7 @@
             ];
             for (let i = 0; i < cdns.length; i++) {
                 try {
-                    const lib = await loadScriptWithTimeout(cdns[i], 2100);
+                    const lib = await loadScriptWithTimeout(cdns[i], 1900);
                     if (lib) return lib;
                 } catch (_) {}
             }
@@ -1239,7 +1242,7 @@
         }
 
         // =====================================================================
-        // 2. STRICT SINGLE-CHANNEL AUDIO, CODE SFX, WEATHER AUDIO & TOMODACHI TTS
+        // 2. SINGLE-CHANNEL AUDIO, CODE SFX & TOMODACHI LIFE ONLINE VOICE
         // =====================================================================
         class HybridAudioSystem {
             constructor() {
@@ -1247,7 +1250,7 @@
                 this.master = null;
                 this.muted = false;
                 this.unlocked = false;
-                this.statusLabel = "🎵 AUDIO: BUSCANDO PISTAS";
+                this.statusLabel = "🎵 AUDIO: LISTO • TOMODACHI VOICE";
 
                 this.sessionStarted = false;
                 this.sessionStartMs = performance.now();
@@ -1256,9 +1259,10 @@
                 this.audioFunky = document.getElementById("audioFunky");
                 this.audio900 = document.getElementById("audio900");
 
-                // Single-channel music lock: "none" | "intro" | "funky" | "station900"
+                // Strict single-channel state: "none" | "intro" | "funky" | "station900"
                 this.activeMusicChannel = "none";
                 this.musicEpoch = 0;
+                this.introNaturalEnded = false;
 
                 this.detectedUrls = {
                     intro: "intro.mp3",
@@ -1288,58 +1292,57 @@
                 this.windGain = null;
                 this.thunderCooldown = 0;
 
-                // Tomodachi Life-style online TTS + device fallback
+                // Tomodachi Life online voice engine (voicegenerator.io + online TTS streams + Web Speech/WebAudio fallback)
                 this.speechCooldown = 0;
-                this.onlineTtsAudio = new Audio();
-                this.onlineTtsAudio.preload = "none";
+                this.voiceAudioEl = new Audio();
+                this.voiceAudioEl.preload = "none";
+                this.voiceGeneratorEndpoint = "https://voicegenerator.io/api/tts";
                 this.selectedDeviceVoice = null;
-                this.voiceLabel = "Tomodachi TTS";
+
+                this._bindIntroNaturalEnd();
                 this._initDeviceVoices();
                 this.scanAudioFiles();
             }
 
+            _bindIntroNaturalEnd() {
+                const self = this;
+                if (this.audioIntro) {
+                    this.audioIntro.addEventListener("ended", function () {
+                        self.introNaturalEnded = true;
+                        if (self.activeMusicChannel === "intro") {
+                            self.activeMusicChannel = "none";
+                            self.setStatus("🎵 INTRO TERMINADA • LISTO");
+                        }
+                    });
+                }
+            }
+
             _initDeviceVoices() {
                 if (!("speechSynthesis" in window)) return;
-                const pickVoice = function (self) {
+                const pick = function (self) {
                     try {
                         const voices = window.speechSynthesis.getVoices() || [];
                         if (!voices.length) return;
-                        const esVoices = voices.filter(function (v) {
+                        const es = voices.filter(function (v) {
                             return v && typeof v.lang === "string" && v.lang.toLowerCase().indexOf("es") === 0;
                         });
-                        const pool = esVoices.length ? esVoices : voices;
-                        let chosen = null;
+                        const pool = es.length ? es : voices;
                         for (let i = 0; i < pool.length; i++) {
                             const n = (pool[i].name || "").toLowerCase();
                             const uri = (pool[i].voiceURI || "").toLowerCase();
-                            if (n.indexOf("samsung") !== -1 || uri.indexOf("samsung") !== -1) {
-                                chosen = pool[i];
-                                self.voiceLabel = "Samsung + Online TTS";
-                                break;
+                            if (n.indexOf("samsung") !== -1 || uri.indexOf("samsung") !== -1 || n.indexOf("google") !== -1 || uri.indexOf("google") !== -1) {
+                                self.selectedDeviceVoice = pool[i];
+                                return;
                             }
                         }
-                        if (!chosen) {
-                            for (let i = 0; i < pool.length; i++) {
-                                const n = (pool[i].name || "").toLowerCase();
-                                const uri = (pool[i].voiceURI || "").toLowerCase();
-                                if (n.indexOf("google") !== -1 || uri.indexOf("google") !== -1) {
-                                    chosen = pool[i];
-                                    self.voiceLabel = "Google + Online TTS";
-                                    break;
-                                }
-                            }
-                        }
-                        if (!chosen && pool.length) {
-                            chosen = pool[0];
-                        }
-                        self.selectedDeviceVoice = chosen;
+                        self.selectedDeviceVoice = pool[0];
                     } catch (_) {}
                 };
-                pickVoice(this);
+                pick(this);
                 const self = this;
                 try {
                     window.speechSynthesis.addEventListener("voiceschanged", function () {
-                        pickVoice(self);
+                        pick(self);
                     });
                 } catch (_) {}
             }
@@ -1408,19 +1411,6 @@
                     if (foundUrl) {
                         this._tryDecodeBuffer(spec.key, [foundUrl]);
                     }
-                }
-
-                const countFound =
-                    (this.detectedReady.intro ? 1 : 0) +
-                    (this.detectedReady.funky ? 1 : 0) +
-                    (this.detectedReady.station900 ? 1 : 0);
-
-                if (!this.unlocked) {
-                    this.setStatus(
-                        countFound > 0
-                            ? ("🎵 3 AUDIOS (" + countFound + "/3) • " + this.voiceLabel)
-                            : ("🎵 AUDIO LISTO • " + this.voiceLabel)
-                    );
                 }
             }
 
@@ -1570,12 +1560,12 @@
                 } catch (_) {}
 
                 this.unlocked = true;
-                this.setStatus("🎵 AUDIO ACTIVO • " + this.voiceLabel);
+                this.setStatus("🎵 AUDIO ACTIVO • TOMODACHI VOICE");
                 return true;
             }
 
             /**
-             * Stops and clears EVERY music source before starting another track so two songs never overlap.
+             * Stops every music channel cleanly before playing another track so music never overlaps.
              */
             stopAllMusicExclusive() {
                 this.musicEpoch++;
@@ -1678,7 +1668,7 @@
                     if (this.audioIntro) this.audioIntro.muted = this.muted;
                     if (this.audioFunky) this.audioFunky.muted = this.muted;
                     if (this.audio900) this.audio900.muted = this.muted;
-                    if (this.onlineTtsAudio) this.onlineTtsAudio.muted = this.muted;
+                    if (this.voiceAudioEl) this.voiceAudioEl.muted = this.muted;
 
                     if (this.muted) {
                         this.stopAllMusicExclusive();
@@ -1687,8 +1677,8 @@
                         }
                         this.setStatus("🔇 AUDIO: SILENCIADO");
                     } else {
-                        this.setStatus("🎵 AUDIO ACTIVO • " + this.voiceLabel);
-                        if (game.phase === "intro") {
+                        this.setStatus("🎵 AUDIO ACTIVO • TOMODACHI VOICE");
+                        if (game.phase === "intro" && !this.introNaturalEnded) {
                             this.startIntroAudio();
                         } else if (game.inCar && game.radioIdx > 0 && game.phase === "playing" && !game.paused) {
                             this.startCarRadio(game.radioIdx);
@@ -1715,6 +1705,16 @@
                     const src = ctx.createBufferSource();
                     src.buffer = buf;
                     src.loop = Boolean(loop);
+                    if (!loop) {
+                        const self = this;
+                        src.onended = function () {
+                            if (epoch === self.musicEpoch && self.activeMusicChannel === "intro") {
+                                self.introNaturalEnded = true;
+                                self.activeMusicChannel = "none";
+                                self.setStatus("🎵 INTRO TERMINADA • LISTO");
+                            }
+                        };
+                    }
                     const g = ctx.createGain();
                     g.gain.setValueAtTime(0.9, ctx.currentTime);
                     src.connect(g);
@@ -1729,26 +1729,31 @@
             }
 
             distanceAttenuation(wx, wz, maxDist) {
-                const limit = maxDist || 68;
+                const limit = maxDist || 72;
                 const d = Math.hypot(wx - player.x, wz - player.z);
                 if (d >= limit) return 0;
                 const t = 1 - d / limit;
-                return Math.pow(t, 1.5);
+                return Math.pow(t, 1.45);
             }
 
+            /**
+             * Starts intro music without cutting it short; lets it run to completion unless another track explicitly starts.
+             */
             startIntroAudio() {
                 this.stopAllMusicExclusive();
                 const epoch = this.musicEpoch;
                 this.activeMusicChannel = "intro";
+                this.introNaturalEnded = false;
                 this.startSessionClock();
                 if (this.muted) return;
 
-                let playedAny = false;
+                let started = false;
                 if (this.buffers.intro) {
-                    playedAny = this._playDecodedBuffer(this.buffers.intro, 0, false, epoch);
+                    started = this._playDecodedBuffer(this.buffers.intro, 0, false, epoch);
                 }
-                if (!playedAny && this.audioIntro) {
+                if (!started && this.audioIntro) {
                     try {
+                        this.audioIntro.loop = false;
                         this.audioIntro.muted = this.muted;
                         this.audioIntro.currentTime = 0;
                         const p = this.audioIntro.play();
@@ -1759,16 +1764,10 @@
                                 }
                             }.bind(this)).catch(function () {});
                         }
-                        playedAny = true;
+                        started = true;
                     } catch (_) {}
                 }
-                this.setStatus(playedAny ? ("🎵 INTRO: " + this.detectedUrls.intro) : "🎵 INTRO: WEST COAST");
-            }
-
-            stopIntroAudio() {
-                if (this.activeMusicChannel === "intro") {
-                    this.stopAllMusicExclusive();
-                }
+                this.setStatus(started ? ("🎵 INTRO: " + this.detectedUrls.intro) : "🎵 INTRO ACTIVA");
             }
 
             getStationAudioElement(stationIdx) {
@@ -1848,7 +1847,7 @@
             playShot(weaponKind, wx, wz) {
                 if (this.muted) return;
                 const att = (wx !== undefined && wz !== undefined)
-                    ? Math.max(0.18, this.distanceAttenuation(wx, wz, 72))
+                    ? Math.max(0.2, this.distanceAttenuation(wx, wz, 76))
                     : 1;
                 try {
                     const ctx = this._ensureAudioContext();
@@ -1868,7 +1867,7 @@
                     flt.type = "bandpass";
                     flt.frequency.setValueAtTime(weaponKind === "sniper" ? 2400 : 1700, t);
                     const g = ctx.createGain();
-                    g.gain.setValueAtTime(0.26 * att, t);
+                    g.gain.setValueAtTime(0.28 * att, t);
                     g.gain.exponentialRampToValueAtTime(0.001, t + dur);
                     src.connect(flt);
                     flt.connect(g);
@@ -1879,7 +1878,7 @@
 
             playPunch(wx, wz) {
                 if (this.muted) return;
-                const att = wx !== undefined && wz !== undefined ? Math.max(0.22, this.distanceAttenuation(wx, wz, 50)) : 1;
+                const att = wx !== undefined && wz !== undefined ? Math.max(0.25, this.distanceAttenuation(wx, wz, 55)) : 1;
                 try {
                     const ctx = this._ensureAudioContext();
                     if (!ctx || !this.master) return;
@@ -1888,9 +1887,9 @@
                     const osc = ctx.createOscillator();
                     const g = ctx.createGain();
                     osc.type = "triangle";
-                    osc.frequency.setValueAtTime(160, t);
+                    osc.frequency.setValueAtTime(165, t);
                     osc.frequency.exponentialRampToValueAtTime(42, t + 0.09);
-                    g.gain.setValueAtTime(0.22 * att, t);
+                    g.gain.setValueAtTime(0.24 * att, t);
                     g.gain.exponentialRampToValueAtTime(0.001, t + 0.1);
                     osc.connect(g);
                     g.connect(this.master);
@@ -1909,7 +1908,7 @@
                     if (!ctx || !this.master) return;
                     if (ctx.state === "suspended") ctx.resume().catch(function () {});
                     const t = ctx.currentTime;
-                    const dur = 0.75;
+                    const dur = 0.78;
 
                     const len = Math.max(1, Math.floor(ctx.sampleRate * dur));
                     const buf = ctx.createBuffer(1, len, ctx.sampleRate);
@@ -1925,7 +1924,7 @@
                     const noiseSrc = ctx.createBufferSource();
                     noiseSrc.buffer = buf;
                     const ng = ctx.createGain();
-                    ng.gain.setValueAtTime(0.36, t);
+                    ng.gain.setValueAtTime(0.38, t);
                     ng.gain.exponentialRampToValueAtTime(0.002, t + dur);
                     noiseSrc.connect(ng);
                     ng.connect(this.master);
@@ -1938,7 +1937,7 @@
                     osc.frequency.setValueAtTime(145, t + 0.12);
                     osc.frequency.setValueAtTime(88, t + 0.26);
                     osc.frequency.exponentialRampToValueAtTime(32, t + dur);
-                    og.gain.setValueAtTime(0.24, t);
+                    og.gain.setValueAtTime(0.25, t);
                     og.gain.exponentialRampToValueAtTime(0.001, t + dur);
                     osc.connect(og);
                     og.connect(this.master);
@@ -1952,8 +1951,8 @@
              */
             playPoliceSiren(wx, wz) {
                 if (this.muted) return;
-                const att = this.distanceAttenuation(wx, wz, 85);
-                if (att <= 0.06) return;
+                const att = this.distanceAttenuation(wx, wz, 92);
+                if (att <= 0.05) return;
                 try {
                     const ctx = this._ensureAudioContext();
                     if (!ctx || !this.master) return;
@@ -1962,15 +1961,15 @@
                     const osc = ctx.createOscillator();
                     const g = ctx.createGain();
                     osc.type = "sawtooth";
-                    osc.frequency.setValueAtTime(600, t);
-                    osc.frequency.linearRampToValueAtTime(980, t + 0.18);
-                    osc.frequency.linearRampToValueAtTime(620, t + 0.38);
-                    g.gain.setValueAtTime(0.11 * att, t);
-                    g.gain.exponentialRampToValueAtTime(0.001, t + 0.4);
+                    osc.frequency.setValueAtTime(610, t);
+                    osc.frequency.linearRampToValueAtTime(990, t + 0.19);
+                    osc.frequency.linearRampToValueAtTime(610, t + 0.40);
+                    g.gain.setValueAtTime(0.13 * att, t);
+                    g.gain.exponentialRampToValueAtTime(0.001, t + 0.42);
                     osc.connect(g);
                     g.connect(this.master);
                     osc.start(t);
-                    osc.stop(t + 0.42);
+                    osc.stop(t + 0.43);
                 } catch (_) {}
             }
 
@@ -1985,7 +1984,7 @@
                     const g = ctx.createGain();
                     osc.type = "sawtooth";
                     osc.frequency.setValueAtTime(360, t);
-                    g.gain.setValueAtTime(0.16, t);
+                    g.gain.setValueAtTime(0.18, t);
                     g.gain.exponentialRampToValueAtTime(0.001, t + 0.24);
                     osc.connect(g);
                     g.connect(this.master);
@@ -2045,48 +2044,110 @@
             }
 
             /**
-             * Tomodachi Life-style expressive voice synthesis using online TTS with device speechSynthesis fallback.
+             * Tomodachi Life-style expressive syllable/formant synth fallback so dialogue always has a quirky voice
+             * even when online TTS streams are offline or blocked.
+             */
+            _playTomodachiSyllableSynth(text, att, basePitch, aggressive) {
+                try {
+                    const ctx = this._ensureAudioContext();
+                    if (!ctx || !this.master) return;
+                    if (ctx.state === "suspended") ctx.resume().catch(function () {});
+                    const clean = String(text || "").replace(/[^a-zA-ZáéíóúüñÁÉÍÓÚÜÑ0-9 ]+/g, "").trim();
+                    const syllables = Math.max(3, Math.min(10, Math.ceil((clean.length || 8) / 3)));
+                    const rootHz = Math.max(115, Math.min(340, (basePitch || 175) * (aggressive ? 1.18 : 1.04)));
+                    const pattern = [1.0, 1.25, 0.9, 1.38, 1.12, 1.45, 0.85, 1.2, 1.32, 0.95];
+                    const now = ctx.currentTime;
+
+                    for (let s = 0; s < syllables; s++) {
+                        const start = now + s * 0.085;
+                        const dur = 0.072;
+                        const osc = ctx.createOscillator();
+                        const formant = ctx.createBiquadFilter();
+                        const g = ctx.createGain();
+
+                        osc.type = aggressive ? "sawtooth" : "triangle";
+                        const f0 = rootHz * pattern[s % pattern.length];
+                        osc.frequency.setValueAtTime(f0, start);
+                        osc.frequency.exponentialRampToValueAtTime(f0 * (s % 2 === 0 ? 1.16 : 0.88), start + dur);
+
+                        formant.type = "bandpass";
+                        formant.frequency.setValueAtTime(s % 2 === 0 ? 780 : 1250, start);
+                        formant.Q.setValueAtTime(3.2, start);
+
+                        g.gain.setValueAtTime(0.001, start);
+                        g.gain.linearRampToValueAtTime(0.14 * att, start + 0.015);
+                        g.gain.exponentialRampToValueAtTime(0.001, start + dur);
+
+                        osc.connect(formant);
+                        formant.connect(g);
+                        g.connect(this.master);
+                        osc.start(start);
+                        osc.stop(start + dur + 0.01);
+                    }
+                } catch (_) {}
+            }
+
+            /**
+             * Online Tomodachi Life-style voice playback for dialogue bubbles and street fights.
+             * Tries voicegenerator.io / online TTS streams first with quirky Tomodachi cadence,
+             * and falls back smoothly to Web Speech API + Tomodachi syllable synth.
              */
             playNpcVoice(wx, wz, text, basePitch, aggressive) {
                 if (this.muted || !text) return;
-                const att = this.distanceAttenuation(wx, wz, 68);
-                if (att <= 0.08 || this.speechCooldown > 0) return;
+                const att = this.distanceAttenuation(wx, wz, 72);
+                if (att <= 0.06 || this.speechCooldown > 0) return;
 
-                this.speechCooldown = 1.65;
-                // Quirky Tomodachi Life cadence: playful syllables & pitch shift
-                const tomodachiLine = aggressive
-                    ? ("¡" + text + "!")
-                    : text.replace(/\s+/g, " ");
+                this.speechCooldown = 1.45;
+                const cleanText = String(text).replace(/\s+/g, " ").trim().slice(0, 120);
+                const tomodachiRate = aggressive ? 1.24 : 1.12;
+                const vol = Math.max(0.18, Math.min(1, att));
 
-                let usedOnline = false;
+                // Always trigger subtle Tomodachi syllable modulation if online audio isn't already playing
+                const fallbackTimer = setTimeout(function () {
+                    this._speakDeviceFallback(cleanText, vol, basePitch, aggressive);
+                    this._playTomodachiSyllableSynth(cleanText, vol * 0.65, basePitch, aggressive);
+                }.bind(this), 260);
+
                 try {
-                    if (typeof window.fetch === "function" && window.location.protocol !== "file:") {
-                        const ttsUrl =
-                            "https://translate.google.com/translate_tts?ie=UTF-8&client=tw-ob&tl=es&q=" +
-                            encodeURIComponent(tomodachiLine.slice(0, 120));
-                        this.onlineTtsAudio.pause();
-                        this.onlineTtsAudio.src = ttsUrl;
-                        this.onlineTtsAudio.volume = Math.max(0.15, Math.min(1, att));
-                        this.onlineTtsAudio.playbackRate = aggressive ? 1.18 : 1.08;
-                        const p = this.onlineTtsAudio.play();
-                        if (p && typeof p.then === "function") {
-                            p.then(function () {
-                                usedOnline = true;
-                            }).catch(function () {
-                                this._speakDeviceTomodachi(tomodachiLine, att, basePitch, aggressive);
-                            }.bind(this));
+                    const encoded = encodeURIComponent(cleanText);
+                    const voicePreset = aggressive ? "Brian" : "Amy";
+                    // Online TTS endpoints (voicegenerator.io style + public TTS audio streams)
+                    const onlineUrls = [
+                        this.voiceGeneratorEndpoint + "?text=" + encoded + "&voice=" + encodeURIComponent(voicePreset) + "&lang=es-ES",
+                        "https://api.streamelements.com/kappa/v2/speech?voice=" + (aggressive ? "Enrique" : "Conchita") + "&text=" + encoded,
+                        "https://translate.google.com/translate_tts?ie=UTF-8&client=tw-ob&tl=es&q=" + encoded
+                    ];
+
+                    let urlIdx = 0;
+                    const tryNextUrl = function () {
+                        if (urlIdx >= onlineUrls.length || this.muted) {
                             return;
                         }
-                        usedOnline = true;
-                    }
-                } catch (_) {}
+                        const candidateUrl = onlineUrls[urlIdx++];
+                        try {
+                            this.voiceAudioEl.pause();
+                            this.voiceAudioEl.src = candidateUrl;
+                            this.voiceAudioEl.volume = vol;
+                            this.voiceAudioEl.playbackRate = tomodachiRate;
+                            const p = this.voiceAudioEl.play();
+                            if (p && typeof p.then === "function") {
+                                p.then(function () {
+                                    clearTimeout(fallbackTimer);
+                                    this.setStatus("🗣️ TOMODACHI VOICE ONLINE");
+                                }.bind(this)).catch(function () {
+                                    tryNextUrl();
+                                });
+                            }
+                        } catch (_) {
+                            tryNextUrl();
+                        }
+                    }.bind(this);
 
-                if (!usedOnline) {
-                    this._speakDeviceTomodachi(tomodachiLine, att, basePitch, aggressive);
-                }
+                    tryNextUrl();
+                } catch (_) {}
             }
 
-            _speakDeviceTomodachi(text, att, basePitch, aggressive) {
+            _speakDeviceFallback(text, att, basePitch, aggressive) {
                 try {
                     if (!("speechSynthesis" in window)) return;
                     window.speechSynthesis.cancel();
@@ -2097,10 +2158,10 @@
                     } else {
                         utter.lang = "es-ES";
                     }
-                    utter.volume = Math.max(0.15, Math.min(1, att));
-                    const normPitch = Math.max(0.85, Math.min(1.65, (basePitch || 155) / 135));
-                    utter.pitch = aggressive ? Math.min(1.75, normPitch * 1.16) : normPitch;
-                    utter.rate = aggressive ? 1.16 : 1.04;
+                    utter.volume = att;
+                    const normPitch = Math.max(0.9, Math.min(1.75, (basePitch || 175) / 135));
+                    utter.pitch = aggressive ? Math.min(1.85, normPitch * 1.18) : normPitch * 1.06;
+                    utter.rate = aggressive ? 1.22 : 1.10;
                     window.speechSynthesis.speak(utter);
                 } catch (_) {}
             }
@@ -2144,7 +2205,7 @@
             cleanup() {
                 this.stopAllMusicExclusive();
                 try {
-                    if (this.onlineTtsAudio) this.onlineTtsAudio.pause();
+                    if (this.voiceAudioEl) this.voiceAudioEl.pause();
                 } catch (_) {}
                 try {
                     if ("speechSynthesis" in window) {
@@ -2157,14 +2218,14 @@
         const soundSys = new HybridAudioSystem();
 
         // =====================================================================
-        // 3. LARGE OPEN WORLD, PHYSICAL ENTRANCES, 10-MIN TIME & WEATHER (30/20/10/40)
+        // 3. EXTENDED WORLD, PHYSICAL VENUES, 10-MIN TIME & WEATHER (30/20/10/40)
         // =====================================================================
         const MAP_WIDTH_X = 166;
         const MAP_LENGTH_Z = 264;
         const ROAD_X_CENTERS = [-108, -54, 0, 54, 108];
         const ROAD_Z_CENTERS = [-188, -135, -82, -29, 24, 77, 130, 183];
 
-        // Physical places in the world (go to door/beacon and press ENTRAR or walk into entrance)
+        // Physical walk-in entrances on the map
         const WORLD_VENUES = [
             { id: "home", kind: "home", name: "Tu Casa", icon: "🏠", x: -27, z: 24, colorHex: "#00f0ff", colorNum: 0x00f0ff, cooldown: 0 },
             { id: "clothes", kind: "clothes", name: "Tienda de Ropa", icon: "👕", x: 27, z: 24, colorHex: "#ff2a85", colorNum: 0xff2a85, cooldown: 0 },
@@ -2270,7 +2331,6 @@
             paused: false,
             activeModal: null,
             activeVenue: null,
-            // Time: 0 = Day (10 min), 1 = Afternoon (10 min), 2 = Night (10 min)
             timeIdx: 0,
             timeSlotElapsed: 0,
             // Weather: "clear" (40%), "rain" (30%), "storm" (20%), "tornado" (10% for 2-5 min)
@@ -2328,9 +2388,8 @@
 
         function applyTimeModeVisuals() {
             const tm = TIME_MODES[game.timeIdx] || TIME_MODES[0];
-            const minsLeft = Math.max(1, Math.ceil((TIME_SLOT_SECONDS - game.timeSlotElapsed) / 60));
             const btn = document.getElementById("btnTimeCycle");
-            if (btn) btn.textContent = tm.label + " (" + minsLeft + "m)";
+            if (btn) btn.textContent = tm.label;
             if (threeScene) {
                 const isBadWeather = game.weather === "storm" || game.weather === "tornado";
                 const skyHex = isBadWeather ? 0x1e1b2e : tm.skyHex;
@@ -2351,8 +2410,7 @@
         }
 
         /**
-         * Rolls weather with exact probabilities:
-         * 30% Rain, 20% Storm, 10% Tornado (2, 3, 4, or 5 minutes), 40% Clear.
+         * Rolls weather with 30% rain, 20% storm, 10% tornado (2–5 min), 40% clear.
          */
         function rollWeatherEvent() {
             const r = Math.random();
@@ -2362,15 +2420,15 @@
             if (r < 0.30) {
                 game.weather = "rain";
                 game.weatherNormalTimer = 55 + Math.random() * 45;
-                pushToast("🌧️ Clima: Lluvia (30%)");
+                pushToast("🌧️ Clima: Lluvia");
             } else if (r < 0.50) {
                 game.weather = "storm";
                 game.weatherNormalTimer = 55 + Math.random() * 45;
                 soundSys.playThunder();
-                pushToast("⛈️ Clima: Tormenta (20%)");
+                pushToast("⛈️ Clima: Tormenta");
             } else if (r < 0.60) {
                 game.weather = "tornado";
-                const mins = 2 + Math.floor(Math.random() * 4); // 2, 3, 4, or 5 minutes
+                const mins = 2 + Math.floor(Math.random() * 4);
                 tornado.active = true;
                 tornado.duration = mins * 60;
                 tornado.timer = tornado.duration;
@@ -2380,7 +2438,7 @@
                 tornado.vx = Math.cos(ang) * 6.5;
                 tornado.vz = Math.sin(ang) * 6.5;
                 soundSys.playPoliceSiren(tornado.x, tornado.z);
-                pushToast("🌪️ ¡TORNADO! Duración: " + mins + " min (10%)");
+                pushToast("🌪️ ¡TORNADO EN LA CIUDAD!");
             } else {
                 game.weather = "clear";
                 game.weatherNormalTimer = 60 + Math.random() * 50;
@@ -2394,8 +2452,6 @@
             game.timeSlotElapsed += dt;
             if (game.timeSlotElapsed >= TIME_SLOT_SECONDS) {
                 cycleTimeOfDay(false);
-            } else if (Math.floor(game.timeSlotElapsed) !== Math.floor(game.timeSlotElapsed - dt)) {
-                applyTimeModeVisuals();
             }
 
             if (tornado.active) {
@@ -2474,8 +2530,8 @@
             if (!npc || !npc.alive) return;
             npc.bubbleText = text;
             npc.bubbleAngry = Boolean(aggressive);
-            npc.bubbleTimer = aggressive ? 2.6 : 2.3;
-            npc.talkCooldown = aggressive ? 2.4 : (3.8 + (npc.id % 4) * 0.9);
+            npc.bubbleTimer = aggressive ? 2.7 : 2.4;
+            npc.talkCooldown = aggressive ? 2.2 : (3.6 + (npc.id % 4) * 0.85);
             soundSys.playNpcVoice(npc.x, npc.z, text, npc.voicePitch, aggressive);
         }
 
@@ -2589,7 +2645,7 @@
                 [36, 14], [-36, -14], [64, 24], [-64, -24],
                 [27, 35], [12, 35], [-27, 35], [27, -40],
                 [68, -110], [-68, 110], [9, 125], [-9, -125],
-                [54, -8], [-54, 66], [54, -108]
+                [54, -8], [-54, 66], [54, -108], [0, 32]
             ];
 
             for (let i = 0; i < npcCoords.length; i++) {
@@ -2602,7 +2658,7 @@
                     y: 0,
                     z: npcCoords[i][1],
                     rotY: (i * 0.9) % (Math.PI * 2),
-                    speed: isCop ? 4.6 : (isBrawlerPair ? 3.5 : 2.3 + (i % 4) * 0.35),
+                    speed: isCop ? 4.8 : (isBrawlerPair ? 3.5 : 2.3 + (i % 4) * 0.35),
                     hp: isCop ? 85 : 65,
                     alive: true,
                     inVehicle: null,
@@ -2611,12 +2667,12 @@
                     stepPhase: i * 0.7,
                     turnTimer: 1.2 + (i % 3),
                     colorHex: isCop ? "#2563eb" : npcColors[i % npcColors.length],
-                    voicePitch: isCop ? 112 : (120 + (i % 6) * 26),
+                    voicePitch: isCop ? 122 : (130 + (i % 6) * 28),
                     mode: isCop ? "cop_patrol" : (isBrawlerPair ? "brawl_npc" : "roam"),
                     rivalIdx: rivalIdx,
                     hitCooldown: 0,
-                    fireCooldown: 0.6,
-                    talkCooldown: 1.4 + i * 0.6,
+                    fireCooldown: 0.55,
+                    talkCooldown: 1.2 + i * 0.5,
                     bubbleText: isBrawlerPair ? FIGHT_GROSS_PHRASES[i % FIGHT_GROSS_PHRASES.length] : "",
                     bubbleAngry: isBrawlerPair,
                     bubbleTimer: isBrawlerPair ? 2.5 : 0,
@@ -2762,7 +2818,6 @@
                 }
             }
 
-            // Physical building entrances & pads in 3D world
             for (let v = 0; v < WORLD_VENUES.length; v++) {
                 const vn = WORLD_VENUES[v];
                 const pad = new THREE.Mesh(
@@ -2808,7 +2863,6 @@
                 threeScene.add(trim);
             }
 
-            // Tornado funnel mesh
             tornadoThreeGroup = new THREE.Group();
             tornadoThreeGroup.visible = false;
             const funnel = new THREE.Mesh(
@@ -3281,7 +3335,6 @@
                 }
             }
 
-            // Rain & Storm streaks
             if (game.weather === "rain" || game.weather === "storm") {
                 const count = game.weather === "storm" ? 95 : 55;
                 ctx.strokeStyle = "rgba(186, 230, 253, 0.45)";
@@ -3338,7 +3391,7 @@
         }
 
         // =====================================================================
-        // 5. MODALS (PAUSE MENU WITHOUT ROB/CLOTHES SHORTCUTS & PHYSICAL VENUES)
+        // 5. MODALS (PAUSE MENU WITHOUT BUY/ROB SHORTCUTS & PHYSICAL VENUES)
         // =====================================================================
         function openGameModal(mode, venueObj) {
             if (game.phase !== "playing") return;
@@ -3354,26 +3407,24 @@
 
             let html = "";
 
-            // Pause menu intentionally omits direct bank robbery & clothes shopping shortcuts:
-            // players travel physically on the map and enter those buildings.
             if (mode === "pause") {
                 titleEl.textContent = "☰ MENÚ / PAUSA • $" + game.money;
                 html =
                     '<div class="modal-grid">' +
                     '<button class="modal-item-btn" data-act="resume_game"><span class="modal-item-name">▶ Reanudar Juego</span><span class="modal-item-meta">Continuar</span><span class="modal-item-sub">Volver a Vice Neon</span></button>' +
-                    '<button class="modal-item-btn" data-act="cycle_time_manual"><span class="modal-item-name">🕒 Cambiar Hora</span><span class="modal-item-meta">' + TIME_MODES[game.timeIdx].label + '</span><span class="modal-item-sub">Ciclo auto de 10m Día/Tarde/Noche</span></button>' +
+                    '<button class="modal-item-btn" data-act="cycle_time_manual"><span class="modal-item-name">🕒 Cambiar Ambiente</span><span class="modal-item-meta">' + TIME_MODES[game.timeIdx].label + '</span><span class="modal-item-sub">Alternar día / tarde / noche</span></button>' +
                     '<button class="modal-item-btn" data-act="toggle_mute_modal"><span class="modal-item-name">' + (soundSys.muted ? "🔊 Activar Sonido" : "🔇 Silenciar Sonido") + '</span><span class="modal-item-meta">Audio</span><span class="modal-item-sub">Música, sirenas y voces</span></button>' +
-                    '<button class="modal-item-btn" data-act="gps_tip"><span class="modal-item-name">🗺️ Lugares en el Mapa</span><span class="modal-item-meta">Entradas reales</span><span class="modal-item-sub">Ve a Casa, Banco, Ropa, Comida o Armería</span></button>' +
+                    '<button class="modal-item-btn" data-act="gps_tip"><span class="modal-item-name">🗺️ Ir a los Locales</span><span class="modal-item-meta">En el mapa</span><span class="modal-item-sub">Entra a Casa, Banco, Ropa, Comida o Armería</span></button>' +
                     '</div>';
             } else if (mode === "home") {
-                titleEl.textContent = "🏠 INTERIOR DE CASA • $" + game.money;
+                titleEl.textContent = "🏠 INTERIOR DE TU CASA • $" + game.money;
                 html =
                     '<div class="modal-grid">' +
-                    '<button class="modal-item-btn" data-act="rest_home"><span class="modal-item-name">🛏️ Descansar en Cama</span><span class="modal-item-meta">GRATIS</span><span class="modal-item-sub">+100 Salud, 0 estrellas y avanza hora</span></button>' +
-                    '<button class="modal-item-btn" data-act="exit_venue"><span class="modal-item-name">🚶 Salir a la Calle</span><span class="modal-item-meta">Puerta</span><span class="modal-item-sub">Volver al exterior</span></button>' +
+                    '<button class="modal-item-btn" data-act="rest_home"><span class="modal-item-name">🛏️ Descansar en la Cama</span><span class="modal-item-meta">GRATIS</span><span class="modal-item-sub">Cura salud, limpia estrellas y cambia hora</span></button>' +
+                    '<button class="modal-item-btn" data-act="exit_venue"><span class="modal-item-name">🚪 Salir a la Calle</span><span class="modal-item-meta">Puerta</span><span class="modal-item-sub">Volver a la ciudad</span></button>' +
                     '</div>';
             } else if (mode === "clothes") {
-                titleEl.textContent = "👕 TIENDA DE ROPA • $" + game.money;
+                titleEl.textContent = "👕 INTERIOR TIENDA DE ROPA • $" + game.money;
                 html = '<div class="modal-grid">';
                 for (let i = 0; i < OUTFIT_CATALOG.length; i++) {
                     const o = OUTFIT_CATALOG[i];
@@ -3389,7 +3440,7 @@
                 }
                 html += '</div>';
             } else if (mode === "food") {
-                titleEl.textContent = "🍔 LOCAL DE COMIDA • $" + game.money;
+                titleEl.textContent = "🍔 INTERIOR LOCAL DE COMIDA • $" + game.money;
                 html = '<div class="modal-grid">';
                 for (let i = 0; i < FOOD_CATALOG.length; i++) {
                     const f = FOOD_CATALOG[i];
@@ -3402,7 +3453,7 @@
                 }
                 html += '</div>';
             } else if (mode === "weapons") {
-                titleEl.textContent = "🔫 ARMERÍA • $" + game.money;
+                titleEl.textContent = "🔫 INTERIOR ARMERÍA • $" + game.money;
                 html = '<div class="modal-grid">';
                 for (let i = 0; i < WEAPON_CATALOG.length; i++) {
                     const w = WEAPON_CATALOG[i];
@@ -3416,7 +3467,7 @@
                 }
                 html += '</div>';
             } else if (mode === "bank") {
-                titleEl.textContent = "🏦 BANCO CENTRAL • $" + game.money;
+                titleEl.textContent = "🏦 INTERIOR DEL BANCO • $" + game.money;
                 html =
                     '<div class="modal-grid">' +
                     '<button class="modal-item-btn" data-act="rob_bank" style="grid-column: span 2;">' +
@@ -3466,7 +3517,7 @@
                 cycleTimeOfDay(false);
                 soundSys.playCashRegister();
                 closeGameModal();
-                pushToast("🏠 Descansaste: +100 Salud y 0 estrellas");
+                pushToast("🏠 Descansaste: salud llena y 0 estrellas");
             } else if (act === "buy_outfit") {
                 const o = OUTFIT_CATALOG[idx];
                 if (!o) return;
@@ -3633,7 +3684,6 @@
                 player.stepPhase *= 0.85;
             }
 
-            // Detect physical entrances on the map
             let foundVenue = null;
             for (let v = 0; v < WORLD_VENUES.length; v++) {
                 const vn = WORLD_VENUES[v];
@@ -3784,16 +3834,17 @@
             if (!npc || !npc.alive || npc.inVehicle) return;
             npc.hp -= dmg;
             if (aggroPlayer) {
-                npc.mode = npc.mode === "cop_patrol" ? "cop_chase" : "attack_player";
+                npc.mode = (npc.mode === "cop_patrol" || npc.mode === "cop_chase") ? "cop_chase" : "attack_player";
             }
-            const phrase = npc.mode === "cop_chase"
+            const isCop = npc.mode === "cop_chase" || npc.mode === "cop_patrol";
+            const phrase = isCop
                 ? POLICE_PHRASES[npc.id % POLICE_PHRASES.length]
                 : FIGHT_GROSS_PHRASES[(npc.id + game.money) % FIGHT_GROSS_PHRASES.length];
             triggerNpcSpeech(npc, phrase, true);
 
             if (npc.hp <= 0) {
                 npc.alive = false;
-                npc.respawnTimer = 9.0;
+                npc.respawnTimer = isCop ? 4.5 : 9.0;
                 game.money += 65;
                 pushToast("+$65 • Eliminado");
                 setWantedLevel(1, 0);
@@ -4014,15 +4065,29 @@
 
             for (let i = 0; i < pedestrians.length; i++) {
                 const npc = pedestrians[i];
+                const isCopSlot = i >= 16;
+
                 if (!npc.alive) {
                     npc.respawnTimer -= dt;
                     if (npc.respawnTimer <= 0) {
                         npc.alive = true;
                         npc.inVehicle = null;
-                        npc.hp = i >= 16 ? 85 : 65;
-                        npc.mode = i >= 16 ? "cop_patrol" : (i < 4 ? "brawl_npc" : "roam");
-                        npc.x = ((i * 41) % 160) - 80;
-                        npc.z = ((i * 67) % 280) - 140;
+                        npc.hp = isCopSlot ? 85 : 65;
+                        if (isCopSlot && game.wanted > 0) {
+                            const ang = Math.random() * Math.PI * 2;
+                            const dist = 24 + Math.random() * 14;
+                            npc.x = player.x + Math.cos(ang) * dist;
+                            npc.z = player.z + Math.sin(ang) * dist;
+                            clampInsideMap(npc);
+                            npc.mode = "cop_chase";
+                            npc.fireCooldown = 0.5;
+                            triggerNpcSpeech(npc, POLICE_PHRASES[npc.id % POLICE_PHRASES.length], true);
+                            soundSys.playPoliceSiren(npc.x, npc.z);
+                        } else {
+                            npc.mode = isCopSlot ? "cop_patrol" : (i < 4 ? "brawl_npc" : "roam");
+                            npc.x = ((i * 41) % 160) - 80;
+                            npc.z = ((i * 67) % 280) - 140;
+                        }
                     }
                     continue;
                 }
@@ -4071,11 +4136,11 @@
                     const dx = player.x - npc.x;
                     const dz = player.z - npc.z;
                     const dist = Math.hypot(dx, dz);
-                    if (dist < 58) {
+                    if (dist < 62) {
                         npc.mode = "cop_chase";
                         npc.rotY = Math.atan2(dx, dz);
                         moveSpd = dist > 11 ? 5.8 : 1.2;
-                        if (dist < 40 && npc.fireCooldown <= 0) {
+                        if (dist < 42 && npc.fireCooldown <= 0) {
                             npc.fireCooldown = 1.0;
                             fireCopBullet(npc);
                             if (npc.talkCooldown <= 0) {
@@ -4322,9 +4387,11 @@
             setIntroCard(1);
         }
 
+        /**
+         * Transitions to gameplay while letting intro audio finish naturally if still playing.
+         */
         function endIntroToGameplay() {
             soundSys.unlock();
-            soundSys.stopIntroAudio();
             document.getElementById("introOverlay").classList.add("hidden");
             document.getElementById("entryScreen").classList.add("hidden");
             document.getElementById("wastedBanner").classList.add("hidden");
@@ -4344,11 +4411,6 @@
 
             const meter = document.getElementById("introMeterFill");
             if (meter) meter.style.width = pct.toFixed(1) + "%";
-
-            const timeTxt = document.getElementById("introTimeText");
-            if (timeTxt) {
-                timeTxt.textContent = Math.min(game.introDuration, t).toFixed(1) + "s / " + game.introDuration.toFixed(1) + "s";
-            }
 
             if (t >= 3.25 && game.introStageShown < 2) {
                 game.introStageShown = 2;
@@ -4451,14 +4513,8 @@
             if (wChip) {
                 if (game.weather === "rain") wChip.textContent = "🌧️ LLUVIA";
                 else if (game.weather === "storm") wChip.textContent = "⛈️ TORMENTA";
-                else if (game.weather === "tornado") {
-                    const sec = Math.max(0, Math.ceil(tornado.timer));
-                    const mm = Math.floor(sec / 60);
-                    const ss = sec % 60;
-                    wChip.textContent = "🌪️ " + mm + ":" + (ss < 10 ? "0" : "") + ss;
-                } else {
-                    wChip.textContent = "☀️ DESPEJADO";
-                }
+                else if (game.weather === "tornado") wChip.textContent = "🌪️ TORNADO";
+                else wChip.textContent = "☀️ DESPEJADO";
             }
             if (modeEl) {
                 if (game.inCar && game.currentCar) {
@@ -4947,7 +5003,6 @@
                 else if (game.nearbyCar) enterCar(game.nearbyCar);
                 else if (game.nearbyVenue) enterVenue(game.nearbyVenue);
                 else {
-                    // Check nearest venue within generous reach so ENTRAR feels responsive
                     let bestV = null;
                     let bestD = 7.5;
                     for (let v = 0; v < WORLD_VENUES.length; v++) {
